@@ -36,6 +36,9 @@ public class Movement : MonoBehaviour
 
         _move = _input.Movement.Move;
         _rotate = _input.Movement.Rotate;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void OnDisable()
@@ -44,6 +47,9 @@ public class Movement : MonoBehaviour
 
         _move = null;
         _rotate = null;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     private void Update()
