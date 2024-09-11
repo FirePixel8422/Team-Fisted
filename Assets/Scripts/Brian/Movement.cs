@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class Movement : MonoBehaviour
 {
@@ -60,6 +61,11 @@ public class Movement : MonoBehaviour
 
     public void Move(Vector2 context)
     {
+        if(context != Vector2.zero)
+        {
+            StartCoroutine(HeadBob());
+        }   
+
         Vector3 _moveDirection = (transform.forward * context.y + transform.right * context.x) * Time.deltaTime;
         _moveDirection = new Vector3(_moveDirection.x, 0, _moveDirection.z);
 
@@ -91,5 +97,13 @@ public class Movement : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(0, _x, 0);
         _components._camera.transform.localRotation = Quaternion.Euler(_y, 0, 0);
+    }
+
+    public IEnumerator HeadBob()
+    {
+        _components._camera.transform.localPosition = Vector3.Lerp(new Vector3(0,0,0), new Vector3(0, 1, 0), .5f);
+        yield return new WaitForSeconds(.5f);
+        _components._camera.transform.localPosition = Vector3.Lerp(new Vector3(0, 1, 0), new Vector3(0, 0, 0), .5f);
+        yield return new WaitForSeconds(.5f);
     }
 }
