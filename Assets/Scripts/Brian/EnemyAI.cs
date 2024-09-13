@@ -7,18 +7,19 @@ public enum State
     none,
     Wandering,
     Sound,
+    WanderSound,
     chase
 }
 
 public class EnemyAI : MonoBehaviour
 {
+    public State _state;
+
+    [Header("")]
     public float _speed;
 
-    public Vector3 _lastSoundLoc;
-
+    [Header("")]
     public Components _components = new Components();
-
-    public State _state;
 
     [Serializable]
     public class Components
@@ -27,6 +28,8 @@ public class EnemyAI : MonoBehaviour
         public Vector3 _audioLoc;
         public Transform _player;
     }
+
+    Vector3 _lastSoundLoc;
 
     public void Start()
     {
@@ -52,6 +55,7 @@ public class EnemyAI : MonoBehaviour
 
             case State.chase:
 
+                FindPlayer();
                 break;
         }
     }
@@ -90,6 +94,11 @@ public class EnemyAI : MonoBehaviour
     }
 
     public void FindPlayer()
+    {
+
+    }
+
+    public void Vent()
     {
 
     }

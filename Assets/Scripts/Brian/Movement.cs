@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour
 
     InputAction _move;
     InputAction _rotate;
+    InputAction _sprint;
 
     public float _moveSpeed;
     //public float _sprintSpeed;
@@ -22,6 +23,7 @@ public class Movement : MonoBehaviour
     {
         public Camera _camera;
         public Rigidbody _rb;
+        public Animator _animation;
     }
 
     float _x, _y;
@@ -37,6 +39,10 @@ public class Movement : MonoBehaviour
 
         _move = _input.Movement.Move;
         _rotate = _input.Movement.Rotate;
+        _sprint = _input.Movement.Sprint;
+
+        _sprint.started += Sprint;
+        _sprint.canceled += Sprint;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -48,6 +54,7 @@ public class Movement : MonoBehaviour
 
         _move = null;
         _rotate = null;
+        _sprint = null;
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -63,8 +70,13 @@ public class Movement : MonoBehaviour
     {
         if(context != Vector2.zero)
         {
-            StartCoroutine(HeadBob());
-        }   
+            _components._animation.SetBool("123", true);
+        }
+
+        else
+        {
+            _components._animation.SetBool("123", false);
+        }
 
         Vector3 _moveDirection = (transform.forward * context.y + transform.right * context.x) * Time.deltaTime;
         _moveDirection = new Vector3(_moveDirection.x, 0, _moveDirection.z);
@@ -99,11 +111,23 @@ public class Movement : MonoBehaviour
         _components._camera.transform.localRotation = Quaternion.Euler(_y, 0, 0);
     }
 
-    public IEnumerator HeadBob()
+    float speedSave;
+
+    public void Sprint(InputAction.CallbackContext context)
     {
-        _components._camera.transform.localPosition = Vector3.Lerp(new Vector3(0,0,0), new Vector3(0, 1, 0), .5f);
-        yield return new WaitForSeconds(.5f);
-        _components._camera.transform.localPosition = Vector3.Lerp(new Vector3(0, 1, 0), new Vector3(0, 0, 0), .5f);
-        yield return new WaitForSeconds(.5f);
+
+        if (context.started)
+        {
+            speedSave = _moveSpeed;
+            _moveSpeed = _moveSpeed * 1.2f;
+
+            _components._animation.speed = 1 * 1.3f;
+        }
+
+        if (context.canceled)
+        {
+            _moveSpeed = speedSave;
+            _components._animation.speed = 1;
+        }
     }
 }
