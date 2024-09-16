@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,7 +10,8 @@ public enum State
     Wandering,
     Sound,
     WanderSound,
-    chase
+    chase,
+    WanderPlayer
 }
 
 public class EnemyAI : MonoBehaviour
@@ -24,12 +27,16 @@ public class EnemyAI : MonoBehaviour
     [Serializable]
     public class Components
     {
-        public NavMeshAgent _agent;
-        public Vector3 _audioLoc;
-        public Transform _player;
-    }
+        [HideInInspector] public Vector3 _lastAudioLoc;
 
-    Vector3 _lastSoundLoc;
+        [HideInInspector] public List<Vector3> _lastKnowEnemyLocationList = new List<Vector3>();
+        [HideInInspector] public Vector3 _lastEnemyLoc;
+
+        public NavMeshAgent _agent;
+        public Camera _camera;
+
+        public GameObject[] _target;
+    }
 
     public void Start()
     {
@@ -41,6 +48,8 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
+        Vision();
+
         switch (_state)
         {
             case State.Wandering:
@@ -49,29 +58,104 @@ public class EnemyAI : MonoBehaviour
                 break;
 
             case State.Sound:
-                GoToAudio();
+                GoToSound();
 
                 break;
 
             case State.chase:
+                GoToPlayer();
 
-                FindPlayer();
+                break;
+
+            case State.WanderSound:
+                WanderAudioLoc();
+
+                break;
+
+            case State.WanderPlayer:
+                WanderPlayerLoc();
+
                 break;
         }
     }
 
     public void RandomRaoming()
     {
-       if(_components._agent.remainingDistance < 1)
-       {
-            _components._agent.SetDestination(RandomNavmeshLocation(10));
-       }
+        if (_components._agent.remainingDistance < 1)
+        {
+            _components._agent.SetDestination(RandomNavmeshLocationLoc(transform.position, 20));
+        }
     }
 
-    public Vector3 RandomNavmeshLocation(float radius)
+    public void HearSound(Vector3 context)
+    {
+        _components._lastAudioLoc = context;
+
+        _state = State.Sound;
+    }
+
+    public void GoToSound()
+    {
+        _components._agent.SetDestination(_components._lastEnemyLoc);
+
+        if (_components._agent.remainingDistance <= 1)
+        {
+            _state = State.WanderSound;
+        }
+    }
+    public void WanderAudioLoc()
+    {
+        if (_components._agent.remainingDistance < 1)
+        {
+            _components._agent.SetDestination(RandomNavmeshLocationLoc(_components._lastAudioLoc, 10));
+        }
+
+        SwitchStateDelay(15, State.Wandering);
+    }
+
+    void Vision()
+    {
+        foreach (GameObject target in _components._target)
+        {
+            if (Vector3.Distance(_components._camera.transform.position, target.transform.position) <= 50)
+            {
+                Vector3 viewPos = _components._camera.WorldToViewportPoint(target.transform.position);
+                if (viewPos.x >= 0 && viewPos.x <= 1 && viewPos.y >= 0 && viewPos.y <= 1 && viewPos.z > 0)
+                {
+                    _components._lastKnowEnemyLocationList.Add(target.transform.position);
+
+                    _components._lastEnemyLoc = _components._lastKnowEnemyLocationList[_components._lastKnowEnemyLocationList.Count - 1];
+
+                    _state = State.chase;
+                }
+            }
+        }
+    }
+
+    public void GoToPlayer()
+    {
+        _components._agent.SetDestination(_components._lastEnemyLoc);
+
+        if(_components._agent.remainingDistance <= 1)
+        {
+            _state = State.WanderPlayer;
+        }
+    }
+
+    public void WanderPlayerLoc()
+    {
+        if (_components._agent.remainingDistance < 1)
+        {
+            _components._agent.SetDestination(RandomNavmeshLocationLoc(_components._lastEnemyLoc, 10));
+        }
+
+        SwitchStateDelay(15, State.Wandering);
+    }
+
+    public Vector3 RandomNavmeshLocationLoc(Vector3 location,float radius)
     {
         Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * radius;
-        randomDirection += transform.position;
+        randomDirection += location;
         NavMeshHit hit;
         Vector3 finalPosition = Vector3.zero;
         if (NavMesh.SamplePosition(randomDirection, out hit, radius, 1))
@@ -81,22 +165,13 @@ public class EnemyAI : MonoBehaviour
         return finalPosition;
     }
 
-    public void HearSound(Vector3 context)
+    IEnumerator SwitchStateDelay(float context, State state)
     {
-        _components._audioLoc = context;
+        yield return new WaitForSeconds(context);
 
-        _state = State.Sound;
+        _state = state;
     }
-
-    public void GoToAudio()
-    {
-        _components._agent.SetDestination(_components._audioLoc);
-    }
-
-    public void FindPlayer()
-    {
-
-    }
+    
 
     public void Vent()
     {
