@@ -171,6 +171,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: f955a1a0cb8dfea4fba4236669afa2b1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce80696b0878c434790e0bb68ea53486, type: 2}
     - target: {fileID: 919132149155446097, guid: f955a1a0cb8dfea4fba4236669afa2b1, type: 3}
       propertyPath: m_Name
       value: Speaker (horror)
@@ -228,6 +232,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 763a10f2ce93e1b4197505645a65420e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c72707ff8b3ca5a428ad49f0f8620a39, type: 2}
     - target: {fileID: 919132149155446097, guid: 763a10f2ce93e1b4197505645a65420e, type: 3}
       propertyPath: m_Name
       value: Bank (horror)
@@ -285,10 +293,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6093592463355912122, guid: 95befe37f36aa7b44a511c2a946ec29d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e5f8539087ce691469511b34c6ade689, type: 2}
     - target: {fileID: 919132149155446097, guid: 95befe37f36aa7b44a511c2a946ec29d, type: 3}
       propertyPath: m_Name
       value: Vent Switch
       objectReference: {fileID: 0}
+    - target: {fileID: 6745302439343835087, guid: 95befe37f36aa7b44a511c2a946ec29d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e5f8539087ce691469511b34c6ade689, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -738,10 +754,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1806680513116206669, guid: 33deae74719750c4f86c068bd7783c07, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c92a844443b61c6499fb0798822451e2, type: 2}
     - target: {fileID: -1255605710908113952, guid: 33deae74719750c4f86c068bd7783c07, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -804731622281664130, guid: 33deae74719750c4f86c068bd7783c07, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c92a844443b61c6499fb0798822451e2, type: 2}
     - target: {fileID: 919132149155446097, guid: 33deae74719750c4f86c068bd7783c07, type: 3}
       propertyPath: m_Name
       value: Vent
@@ -831,6 +855,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 66c914aac6b657942afb7764d04154bb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 61c97fc325c3783438153e2fc12ef1c5, type: 2}
     - target: {fileID: 919132149155446097, guid: 66c914aac6b657942afb7764d04154bb, type: 3}
       propertyPath: m_Name
       value: Camera (horror)
@@ -888,6 +916,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5784341920306415044, guid: 73cc7ee29ca50b64e9155c3652270ea2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 17620f616bb0dde4d9d026372f4825ba, type: 2}
+    - target: {fileID: -3731609504099699670, guid: 73cc7ee29ca50b64e9155c3652270ea2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 17620f616bb0dde4d9d026372f4825ba, type: 2}
     - target: {fileID: 919132149155446097, guid: 73cc7ee29ca50b64e9155c3652270ea2, type: 3}
       propertyPath: m_Name
       value: Button
