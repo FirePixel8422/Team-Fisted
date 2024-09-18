@@ -102,6 +102,7 @@ public class EnemyAI : MonoBehaviour
 
         if(_components._ventTime <= 0)
         {
+            _components._goVentLoc = Vector3.zero;
             _state = State.goToVent;
         }
 
@@ -124,15 +125,7 @@ public class EnemyAI : MonoBehaviour
 
         if (_components._agent.remainingDistance <= 0)
         {
-            if(Vector3.Distance(_components._target[0].transform.position, transform.position) <= 1)
-            {
-                KillPlayer();
-            }
-
-            else
-            {
-                _state = State.WanderSound;
-            }
+            _state = State.WanderSound;
         }
     }
     public void WanderAudioLoc()
@@ -142,7 +135,7 @@ public class EnemyAI : MonoBehaviour
             _components._agent.SetDestination(RandomNavmeshLocationLoc(_components._lastAudioLoc, 10));
         }
 
-        SwitchStateDelay(15, State.Wandering);
+        StartCoroutine(SwitchStateDelay(15, State.Wandering));
     }
 
     void Vision()
@@ -159,6 +152,8 @@ public class EnemyAI : MonoBehaviour
                     _components._lastEnemyLoc = _components._lastKnowEnemyLocationList[_components._lastKnowEnemyLocationList.Count - 1];
 
                     _state = State.chase;
+
+                    StopCoroutine(SwitchStateDelay(15, State.Wandering));
                 }
             }
         }
@@ -170,18 +165,26 @@ public class EnemyAI : MonoBehaviour
 
         if(_components._agent.remainingDistance <= 1)
         {
-            _state = State.WanderPlayer;
+            if (Vector3.Distance(_components._target[0].transform.position, transform.position) <= 1)
+            {
+                KillPlayer();
+            }
+
+            else
+            {
+                _state = State.WanderPlayer;
+            }
         }
     }
 
     public void WanderPlayerLoc()
     {
+        StartCoroutine(SwitchStateDelay(15, State.Wandering));
+
         if (_components._agent.remainingDistance < 1)
         {
             _components._agent.SetDestination(RandomNavmeshLocationLoc(_components._lastEnemyLoc, 10));
         }
-
-        SwitchStateDelay(15, State.Wandering);
     }
 
     public void Vent()
@@ -197,8 +200,6 @@ public class EnemyAI : MonoBehaviour
 
         if(_components._agent.remainingDistance <= 0)
         {
-            _components._goVentLoc = Vector3.zero;
-
             _state = State.Venting;
             Venting();
         }
@@ -210,7 +211,8 @@ public class EnemyAI : MonoBehaviour
 
         transform.position = _components._goVentLoc;
 
-        _components._goVentLoc = Vector3.zero;
+        _components._agent.SetDestination(RandomNavmeshLocationLoc(transform.position, 20));
+
         _state = State.Wandering;
     }
 
@@ -227,11 +229,17 @@ public class EnemyAI : MonoBehaviour
         return finalPosition;
     }
 
+    public bool _swicthOn;
+
     IEnumerator SwitchStateDelay(float context, State state)
     {
-        yield return new WaitForSeconds(context);
-
-        _state = state;
+        if (!_swicthOn)
+        {
+            _swicthOn = true;
+            yield return new WaitForSeconds(context);
+            _state = state;
+            _swicthOn = false;
+        }
     }
 
     public void KillPlayer()
