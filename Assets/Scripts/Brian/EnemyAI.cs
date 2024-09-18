@@ -11,7 +11,10 @@ public enum State
     Sound,
     WanderSound,
     chase,
-    WanderPlayer
+    WanderPlayer,
+    goToVent,
+    Venting,
+    GameEnd
 }
 
 public class EnemyAI : MonoBehaviour
@@ -32,15 +35,22 @@ public class EnemyAI : MonoBehaviour
         [HideInInspector] public List<Vector3> _lastKnowEnemyLocationList = new List<Vector3>();
         [HideInInspector] public Vector3 _lastEnemyLoc;
 
+        [HideInInspector] public Vector3 _goVentLoc;
+
         public NavMeshAgent _agent;
         public Camera _camera;
 
         public GameObject[] _target;
+        public GameObject[] _ventLoc;
+
+        public Vector2 _ventDelayTime;
+        public float _ventTime;
     }
 
     public void Start()
     {
         _components._agent.speed = _speed;
+        _components._ventTime = UnityEngine.Random.Range(_components._ventDelayTime.x, _components._ventDelayTime.y);
 
         _state = State.Wandering;
     }
@@ -48,6 +58,8 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
+        if (_state == State.GameEnd) return;
+
         Vision();
 
         switch (_state)
@@ -76,11 +88,23 @@ public class EnemyAI : MonoBehaviour
                 WanderPlayerLoc();
 
                 break;
+
+            case State.goToVent:
+                Vent();
+
+                break;
         }
     }
 
     public void RandomRaoming()
     {
+        _components._ventTime -= Time.deltaTime;
+
+        if(_components._ventTime <= 0)
+        {
+            _state = State.goToVent;
+        }
+
         if (_components._agent.remainingDistance < 1)
         {
             _components._agent.SetDestination(RandomNavmeshLocationLoc(transform.position, 20));
@@ -98,9 +122,17 @@ public class EnemyAI : MonoBehaviour
     {
         _components._agent.SetDestination(_components._lastEnemyLoc);
 
-        if (_components._agent.remainingDistance <= 1)
+        if (_components._agent.remainingDistance <= 0)
         {
-            _state = State.WanderSound;
+            if(Vector3.Distance(_components._target[0].transform.position, transform.position) <= 1)
+            {
+                KillPlayer();
+            }
+
+            else
+            {
+                _state = State.WanderSound;
+            }
         }
     }
     public void WanderAudioLoc()
@@ -117,7 +149,7 @@ public class EnemyAI : MonoBehaviour
     {
         foreach (GameObject target in _components._target)
         {
-            if (Vector3.Distance(_components._camera.transform.position, target.transform.position) <= 50)
+            if (Vector3.Distance(_components._camera.transform.position, target.transform.position) <= 15)
             {
                 Vector3 viewPos = _components._camera.WorldToViewportPoint(target.transform.position);
                 if (viewPos.x >= 0 && viewPos.x <= 1 && viewPos.y >= 0 && viewPos.y <= 1 && viewPos.z > 0)
@@ -152,6 +184,36 @@ public class EnemyAI : MonoBehaviour
         SwitchStateDelay(15, State.Wandering);
     }
 
+    public void Vent()
+    {
+        if (_components._goVentLoc == Vector3.zero)
+        {
+            _components._ventTime = UnityEngine.Random.Range(_components._ventDelayTime.x, _components._ventDelayTime.y);
+
+            _components._goVentLoc = _components._ventLoc[UnityEngine.Random.Range(0, _components._ventLoc.Length)].transform.position;
+
+            _components._agent.SetDestination(_components._goVentLoc);
+        }
+
+        if(_components._agent.remainingDistance <= 0)
+        {
+            _components._goVentLoc = Vector3.zero;
+
+            _state = State.Venting;
+            Venting();
+        }
+    }
+
+    public void Venting()
+    {
+        _components._goVentLoc = _components._ventLoc[UnityEngine.Random.Range(0, _components._ventLoc.Length)].transform.position;
+
+        transform.position = _components._goVentLoc;
+
+        _components._goVentLoc = Vector3.zero;
+        _state = State.Wandering;
+    }
+
     public Vector3 RandomNavmeshLocationLoc(Vector3 location,float radius)
     {
         Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * radius;
@@ -171,10 +233,9 @@ public class EnemyAI : MonoBehaviour
 
         _state = state;
     }
-    
 
-    public void Vent()
+    public void KillPlayer()
     {
-
+        _state = State.GameEnd;
     }
 }
