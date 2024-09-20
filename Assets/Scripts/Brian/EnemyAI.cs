@@ -245,5 +245,7 @@ public class EnemyAI : MonoBehaviour
     public void KillPlayer()
     {
         _state = State.GameEnd;
+
+        Debug.LogError("dead");
     }
 }
