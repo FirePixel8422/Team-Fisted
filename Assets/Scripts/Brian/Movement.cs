@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections;
 
 public class Movement : MonoBehaviour
 {
@@ -12,7 +11,6 @@ public class Movement : MonoBehaviour
     InputAction _sprint;
 
     public float _moveSpeed;
-    //public float _sprintSpeed;
 
     public float _rotationSpeed;
 
@@ -68,7 +66,7 @@ public class Movement : MonoBehaviour
 
     public void Move(Vector2 context)
     {
-        if(context != Vector2.zero)
+        if (context != Vector2.zero)
         {
             _components._animation.SetBool("123", true);
         }
