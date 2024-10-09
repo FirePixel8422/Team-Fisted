@@ -108,7 +108,7 @@ public class EnemyAI : MonoBehaviour
 
         if (_components._agent.remainingDistance < 1)
         {
-            _components._agent.SetDestination(RandomNavmeshLocationLoc(transform.position, 20));
+            _components._agent.SetDestination(RandomNavmeshLocationLoc(transform.position, 50));
         }
     }
 

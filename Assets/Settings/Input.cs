@@ -167,6 +167,82 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Ui"",
+            ""id"": ""9d6c4793-b1c4-43df-b315-8742f3c58203"",
+            ""actions"": [
+                {
+                    ""name"": ""Esc"",
+                    ""type"": ""Button"",
+                    ""id"": ""f668174d-9a49-4a7d-8935-2bc08af1bc11"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tab"",
+                    ""type"": ""Button"",
+                    ""id"": ""23d121a1-8a37-4081-9b44-4ff015db0c22"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""bba80bea-7a68-412a-b24a-8bf6df81d2b5"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Esc"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fe735bc9-c48d-4426-95fa-160eadbe2ada"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Interect"",
+            ""id"": ""278784fb-3b16-432e-8632-bceab24bbb16"",
+            ""actions"": [
+                {
+                    ""name"": ""Interect"",
+                    ""type"": ""Button"",
+                    ""id"": ""a73b5682-1f42-474d-b960-35005c43aba4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""68afd79b-da33-4619-9a5a-bad85524db23"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -176,6 +252,13 @@ public partial class @Input: IInputActionCollection2, IDisposable
         m_Movement_Move = m_Movement.FindAction("Move", throwIfNotFound: true);
         m_Movement_Rotate = m_Movement.FindAction("Rotate", throwIfNotFound: true);
         m_Movement_Sprint = m_Movement.FindAction("Sprint", throwIfNotFound: true);
+        // Ui
+        m_Ui = asset.FindActionMap("Ui", throwIfNotFound: true);
+        m_Ui_Esc = m_Ui.FindAction("Esc", throwIfNotFound: true);
+        m_Ui_Tab = m_Ui.FindAction("Tab", throwIfNotFound: true);
+        // Interect
+        m_Interect = asset.FindActionMap("Interect", throwIfNotFound: true);
+        m_Interect_Interect = m_Interect.FindAction("Interect", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -295,10 +378,119 @@ public partial class @Input: IInputActionCollection2, IDisposable
         }
     }
     public MovementActions @Movement => new MovementActions(this);
+
+    // Ui
+    private readonly InputActionMap m_Ui;
+    private List<IUiActions> m_UiActionsCallbackInterfaces = new List<IUiActions>();
+    private readonly InputAction m_Ui_Esc;
+    private readonly InputAction m_Ui_Tab;
+    public struct UiActions
+    {
+        private @Input m_Wrapper;
+        public UiActions(@Input wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Esc => m_Wrapper.m_Ui_Esc;
+        public InputAction @Tab => m_Wrapper.m_Ui_Tab;
+        public InputActionMap Get() { return m_Wrapper.m_Ui; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UiActions set) { return set.Get(); }
+        public void AddCallbacks(IUiActions instance)
+        {
+            if (instance == null || m_Wrapper.m_UiActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_UiActionsCallbackInterfaces.Add(instance);
+            @Esc.started += instance.OnEsc;
+            @Esc.performed += instance.OnEsc;
+            @Esc.canceled += instance.OnEsc;
+            @Tab.started += instance.OnTab;
+            @Tab.performed += instance.OnTab;
+            @Tab.canceled += instance.OnTab;
+        }
+
+        private void UnregisterCallbacks(IUiActions instance)
+        {
+            @Esc.started -= instance.OnEsc;
+            @Esc.performed -= instance.OnEsc;
+            @Esc.canceled -= instance.OnEsc;
+            @Tab.started -= instance.OnTab;
+            @Tab.performed -= instance.OnTab;
+            @Tab.canceled -= instance.OnTab;
+        }
+
+        public void RemoveCallbacks(IUiActions instance)
+        {
+            if (m_Wrapper.m_UiActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IUiActions instance)
+        {
+            foreach (var item in m_Wrapper.m_UiActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_UiActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public UiActions @Ui => new UiActions(this);
+
+    // Interect
+    private readonly InputActionMap m_Interect;
+    private List<IInterectActions> m_InterectActionsCallbackInterfaces = new List<IInterectActions>();
+    private readonly InputAction m_Interect_Interect;
+    public struct InterectActions
+    {
+        private @Input m_Wrapper;
+        public InterectActions(@Input wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Interect => m_Wrapper.m_Interect_Interect;
+        public InputActionMap Get() { return m_Wrapper.m_Interect; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(InterectActions set) { return set.Get(); }
+        public void AddCallbacks(IInterectActions instance)
+        {
+            if (instance == null || m_Wrapper.m_InterectActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_InterectActionsCallbackInterfaces.Add(instance);
+            @Interect.started += instance.OnInterect;
+            @Interect.performed += instance.OnInterect;
+            @Interect.canceled += instance.OnInterect;
+        }
+
+        private void UnregisterCallbacks(IInterectActions instance)
+        {
+            @Interect.started -= instance.OnInterect;
+            @Interect.performed -= instance.OnInterect;
+            @Interect.canceled -= instance.OnInterect;
+        }
+
+        public void RemoveCallbacks(IInterectActions instance)
+        {
+            if (m_Wrapper.m_InterectActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IInterectActions instance)
+        {
+            foreach (var item in m_Wrapper.m_InterectActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_InterectActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public InterectActions @Interect => new InterectActions(this);
     public interface IMovementActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+    }
+    public interface IUiActions
+    {
+        void OnEsc(InputAction.CallbackContext context);
+        void OnTab(InputAction.CallbackContext context);
+    }
+    public interface IInterectActions
+    {
+        void OnInterect(InputAction.CallbackContext context);
     }
 }

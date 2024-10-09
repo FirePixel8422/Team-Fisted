@@ -21,21 +21,20 @@ public class VentSystem : MonoBehaviour
 
     public void SuckEnemy(GameObject obj, int i)
     {
-        i = i++;
+        Debug.LogWarning("suck Enemy");
 
-        if (_ventState.Length >= i)
-        {
-            obj.transform.position = _endVent.transform.position;
-        }
+        i += 1;
 
-        if (_ventState[i] != VentState.Blow)
+        if (_ventState[i] != VentState.Suck)
         {
             obj.transform.position = _ventObj[i].transform.position;
+            Debug.LogWarning("2");
         }
 
         else
         {
             SuckEnemy(obj, i);
+            Debug.LogWarning("3");
         }
 
     }

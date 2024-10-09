@@ -145,6 +145,82 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Ui",
+            "id": "9d6c4793-b1c4-43df-b315-8742f3c58203",
+            "actions": [
+                {
+                    "name": "Esc",
+                    "type": "Button",
+                    "id": "f668174d-9a49-4a7d-8935-2bc08af1bc11",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Tab",
+                    "type": "Button",
+                    "id": "23d121a1-8a37-4081-9b44-4ff015db0c22",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "bba80bea-7a68-412a-b24a-8bf6df81d2b5",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Esc",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fe735bc9-c48d-4426-95fa-160eadbe2ada",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Interect",
+            "id": "278784fb-3b16-432e-8632-bceab24bbb16",
+            "actions": [
+                {
+                    "name": "Interect",
+                    "type": "Button",
+                    "id": "a73b5682-1f42-474d-b960-35005c43aba4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "68afd79b-da33-4619-9a5a-bad85524db23",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

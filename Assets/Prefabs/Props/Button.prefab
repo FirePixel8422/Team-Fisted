@@ -22,31 +22,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73cc7ee29ca50b64e9155c3652270ea2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.37
+      value: -1.110672
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73cc7ee29ca50b64e9155c3652270ea2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.6195102
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73cc7ee29ca50b64e9155c3652270ea2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 4.6083107
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73cc7ee29ca50b64e9155c3652270ea2, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73cc7ee29ca50b64e9155c3652270ea2, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73cc7ee29ca50b64e9155c3652270ea2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73cc7ee29ca50b64e9155c3652270ea2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73cc7ee29ca50b64e9155c3652270ea2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73cc7ee29ca50b64e9155c3652270ea2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73cc7ee29ca50b64e9155c3652270ea2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -68,9 +68,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 17620f616bb0dde4d9d026372f4825ba, type: 2}
+    - target: {fileID: -981295040500159441, guid: 73cc7ee29ca50b64e9155c3652270ea2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 73cc7ee29ca50b64e9155c3652270ea2, type: 3}
       propertyPath: m_Name
       value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 73cc7ee29ca50b64e9155c3652270ea2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -82,6 +90,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 73cc7ee29ca50b64e9155c3652270ea2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4247016660056002328}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 73cc7ee29ca50b64e9155c3652270ea2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2906985416066123178}
     - targetCorrespondingSourceObject: {fileID: -4118533814740330778, guid: 73cc7ee29ca50b64e9155c3652270ea2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7914796796238869309}
@@ -157,5 +168,17 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.46969223, y: 1.7447556, z: 0.47070488}
+  m_Size: {x: 0.46969223, y: 1.6, z: 0.47070488}
   m_Center: {x: -0.00050616264, y: 0.5272197, z: 0.0012847334}
+--- !u!114 &2906985416066123178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6243354920468767992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 256a313e0860ca142bbf321855b7e937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
