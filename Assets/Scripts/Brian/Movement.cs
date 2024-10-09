@@ -12,6 +12,9 @@ public class Movement : MonoBehaviour
 
     public float _moveSpeed;
 
+    public float _maxStamina;
+    float _stamina;
+
     public float _rotationSpeed;
 
     public Components _components = new Components();
@@ -29,6 +32,8 @@ public class Movement : MonoBehaviour
     private void Awake()
     {
         _input = new Input();
+
+        _stamina = _maxStamina;
     }
 
     private void OnEnable()
@@ -80,6 +85,25 @@ public class Movement : MonoBehaviour
         _moveDirection = new Vector3(_moveDirection.x, 0, _moveDirection.z);
 
         _components._rb.AddForce(_moveDirection * 3000);
+
+        if(_moveSpeed > 11)
+        {
+            if (_stamina <= 0)
+            {
+                _moveSpeed = speedSave;
+                _components._animation.speed = 1;
+            }
+
+            else
+            {
+                _stamina -= Time.deltaTime;
+            }
+        }
+
+        else if(_stamina < _maxStamina)
+        {
+            _stamina += Time.deltaTime;
+        }
 
         SpeedControle();
     }

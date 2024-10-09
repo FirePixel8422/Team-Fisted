@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 50b63838d69e30d4ea8a0c2ed7000d53, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.748445
+      value: -45.217422
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 50b63838d69e30d4ea8a0c2ed7000d53, type: 3}
       propertyPath: m_LocalPosition.y
@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 50b63838d69e30d4ea8a0c2ed7000d53, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -13.3734665
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 50b63838d69e30d4ea8a0c2ed7000d53, type: 3}
       propertyPath: m_LocalRotation.w
@@ -38,7 +38,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 50b63838d69e30d4ea8a0c2ed7000d53, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 50b63838d69e30d4ea8a0c2ed7000d53, type: 3}
       propertyPath: m_LocalRotation.y
@@ -67,6 +67,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 50b63838d69e30d4ea8a0c2ed7000d53, type: 3}
       propertyPath: m_Name
       value: Gas tank horror
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 50b63838d69e30d4ea8a0c2ed7000d53, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -100,5 +104,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.22499767, y: 0.6367964, z: 0.19615705}
-  m_Center: {x: -0.0020553581, y: 0.3183981, z: -0.0016841888}
+  m_Size: {x: 0.22499767, y: 1.2463238, z: 0.19615705}
+  m_Center: {x: -0.0020553619, y: 0.6231618, z: -0.0016841888}

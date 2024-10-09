@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ffd7254edc4f2f740ab8b3d97c847016, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.741751
+      value: -45.716
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ffd7254edc4f2f740ab8b3d97c847016, type: 3}
       propertyPath: m_LocalPosition.y
@@ -30,19 +30,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ffd7254edc4f2f740ab8b3d97c847016, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -12.521
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ffd7254edc4f2f740ab8b3d97c847016, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9927115
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ffd7254edc4f2f740ab8b3d97c847016, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ffd7254edc4f2f740ab8b3d97c847016, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.12051544
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ffd7254edc4f2f740ab8b3d97c847016, type: 3}
       propertyPath: m_LocalRotation.z
@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ffd7254edc4f2f740ab8b3d97c847016, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -13.844
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ffd7254edc4f2f740ab8b3d97c847016, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -67,6 +67,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ffd7254edc4f2f740ab8b3d97c847016, type: 3}
       propertyPath: m_Name
       value: Crate 2 horror
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ffd7254edc4f2f740ab8b3d97c847016, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -100,5 +104,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.85759574, y: 0.37450242, z: 0.37450245}
-  m_Center: {x: 0, y: 0.18725121, z: 0}
+  m_Size: {x: 1.4819049, y: 0.7462232, z: 0.37450245}
+  m_Center: {x: -0.0035421553, y: 0.3731116, z: 5.1873974e-11}

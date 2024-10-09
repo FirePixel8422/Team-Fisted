@@ -22,27 +22,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f955a1a0cb8dfea4fba4236669afa2b1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.657
+      value: -45.686
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f955a1a0cb8dfea4fba4236669afa2b1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.5300001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f955a1a0cb8dfea4fba4236669afa2b1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -22.333
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f955a1a0cb8dfea4fba4236669afa2b1, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.86217046
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f955a1a0cb8dfea4fba4236669afa2b1, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f955a1a0cb8dfea4fba4236669afa2b1, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.50661844
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f955a1a0cb8dfea4fba4236669afa2b1, type: 3}
       propertyPath: m_LocalRotation.z
@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f955a1a0cb8dfea4fba4236669afa2b1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -60.878
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f955a1a0cb8dfea4fba4236669afa2b1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -67,6 +67,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f955a1a0cb8dfea4fba4236669afa2b1, type: 3}
       propertyPath: m_Name
       value: Speaker (horror)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f955a1a0cb8dfea4fba4236669afa2b1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -100,5 +104,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.23943257, y: 0.3350258, z: 0.1791183}
-  m_Center: {x: 0.0015915632, y: 0.16751286, z: -0.015874103}
+  m_Size: {x: 0.43059427, y: 0.64889586, z: 0.1791183}
+  m_Center: {x: -0.006206654, y: 0.32444793, z: -0.015874093}

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public enum VentState
 {
@@ -23,11 +24,19 @@ public class VentSystem : MonoBehaviour
     {
         Debug.LogWarning("suck Enemy");
 
-        i += 1;
+        i++;
 
-        if (_ventState[i] != VentState.Suck)
+        if (_ventObj.Length <= i)
         {
+            obj.GetComponent<NavMeshAgent>().enabled = false;
+            obj.transform.position = _endVent.transform.position;
+        }
+
+        else if (_ventState[i] != VentState.Suck)
+        {
+            obj.GetComponent<NavMeshAgent>().enabled = false;
             obj.transform.position = _ventObj[i].transform.position;
+            obj.GetComponent<NavMeshAgent>().enabled = true;
             Debug.LogWarning("2");
         }
 

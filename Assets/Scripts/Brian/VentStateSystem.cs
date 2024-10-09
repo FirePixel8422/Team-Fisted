@@ -5,24 +5,47 @@ using UnityEngine;
 public class VentStateSystem : MonoBehaviour
 {
     public VentSystem _ventSystem;
+    Animator _animator;
 
     bool _onn = false;
 
     int _index;
+    private void Start()
+    {
+        _animator = GetComponent<Animator>();
+
+        for (int i = 0; i < _ventSystem._ventObj.Length; i++)
+        {
+            if (_ventSystem._ventObj[i] == gameObject)
+            {
+                _index = i;
+            }
+        }
+    }
 
     public void TurnOnn()
     {
         if (_onn == false)
         {
-            for (int i = 0; i < _ventSystem._ventObj.Length; i++)
-            {
-                if (_ventSystem._ventObj[i] == gameObject)
-                {
-                    _ventSystem._ventState[i] = VentState.Suck;
+            _ventSystem._ventState[_index] = VentState.Suck;
 
-                    _index = i;
-                    _onn = true;
-                }
+            _animator.SetBool("Switch", true);
+            _onn = true;
+        }
+    }
+
+    public void Switch()
+    {
+        if (_onn)
+        {
+            if (_ventSystem._ventState[_index] == VentState.Blow)
+            {
+                _ventSystem._ventState[_index] = VentState.Suck;
+            }
+
+            else if (_ventSystem._ventState[_index] == VentState.Suck)
+            {
+                _ventSystem._ventState[_index] = VentState.Blow;
             }
         }
     }
@@ -36,5 +59,4 @@ public class VentStateSystem : MonoBehaviour
             _ventSystem.SuckEnemy(other.gameObject, _index);
         }
     }
-
 }

@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 370459099fbf51c418b68da5b168c757, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.679341
+      value: -44.834
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 370459099fbf51c418b68da5b168c757, type: 3}
       propertyPath: m_LocalPosition.y
@@ -30,19 +30,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 370459099fbf51c418b68da5b168c757, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -24.601
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 370459099fbf51c418b68da5b168c757, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.45118073
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 370459099fbf51c418b68da5b168c757, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 370459099fbf51c418b68da5b168c757, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.89243263
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 370459099fbf51c418b68da5b168c757, type: 3}
       propertyPath: m_LocalRotation.z
@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 370459099fbf51c418b68da5b168c757, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -126.361
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 370459099fbf51c418b68da5b168c757, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -67,6 +67,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 370459099fbf51c418b68da5b168c757, type: 3}
       propertyPath: m_Name
       value: Crate 1 horror
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 370459099fbf51c418b68da5b168c757, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -100,5 +104,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.7288057, y: 0.34266007, z: 0.524182}
-  m_Center: {x: 0.0000009536743, y: 0.17133003, z: -0.008308262}
+  m_Size: {x: 1.3102475, y: 0.6630044, z: 1}
+  m_Center: {x: 0.011382938, y: 0.32988477, z: -4.2165227e-10}

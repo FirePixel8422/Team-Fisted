@@ -228,6 +228,15 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FlashLight"",
+                    ""type"": ""Button"",
+                    ""id"": ""6ae9e620-9378-4500-82fa-b6f91b06ae20"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -239,6 +248,17 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""20a300a7-9b77-40b8-8711-74d01c08f810"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FlashLight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -259,6 +279,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
         // Interect
         m_Interect = asset.FindActionMap("Interect", throwIfNotFound: true);
         m_Interect_Interect = m_Interect.FindAction("Interect", throwIfNotFound: true);
+        m_Interect_FlashLight = m_Interect.FindAction("FlashLight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -437,11 +458,13 @@ public partial class @Input: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Interect;
     private List<IInterectActions> m_InterectActionsCallbackInterfaces = new List<IInterectActions>();
     private readonly InputAction m_Interect_Interect;
+    private readonly InputAction m_Interect_FlashLight;
     public struct InterectActions
     {
         private @Input m_Wrapper;
         public InterectActions(@Input wrapper) { m_Wrapper = wrapper; }
         public InputAction @Interect => m_Wrapper.m_Interect_Interect;
+        public InputAction @FlashLight => m_Wrapper.m_Interect_FlashLight;
         public InputActionMap Get() { return m_Wrapper.m_Interect; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -454,6 +477,9 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @Interect.started += instance.OnInterect;
             @Interect.performed += instance.OnInterect;
             @Interect.canceled += instance.OnInterect;
+            @FlashLight.started += instance.OnFlashLight;
+            @FlashLight.performed += instance.OnFlashLight;
+            @FlashLight.canceled += instance.OnFlashLight;
         }
 
         private void UnregisterCallbacks(IInterectActions instance)
@@ -461,6 +487,9 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @Interect.started -= instance.OnInterect;
             @Interect.performed -= instance.OnInterect;
             @Interect.canceled -= instance.OnInterect;
+            @FlashLight.started -= instance.OnFlashLight;
+            @FlashLight.performed -= instance.OnFlashLight;
+            @FlashLight.canceled -= instance.OnFlashLight;
         }
 
         public void RemoveCallbacks(IInterectActions instance)
@@ -492,5 +521,6 @@ public partial class @Input: IInputActionCollection2, IDisposable
     public interface IInterectActions
     {
         void OnInterect(InputAction.CallbackContext context);
+        void OnFlashLight(InputAction.CallbackContext context);
     }
 }

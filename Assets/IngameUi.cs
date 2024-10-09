@@ -49,12 +49,12 @@ public class IngameUi : MonoBehaviour
 
     public void Tab(InputAction.CallbackContext context)
     {
-        if(context.started && _helpTab.active)
+        if(context.started && _helpTab.activeInHierarchy)
         {
             _helpTab.SetActive(false);
         }
 
-        else if (context.started && !_helpTab.active)
+        else if (context.started && !_helpTab.activeInHierarchy)
         {
             _helpTab.SetActive(true);
         }
@@ -62,13 +62,13 @@ public class IngameUi : MonoBehaviour
 
     public void Esc(InputAction.CallbackContext context)
     {
-        if (context.started && _settings.active)
+        if (context.started && _settings.activeInHierarchy)
         {
             _settings.SetActive(false);
             _movement.enabled = true;
         }
 
-        else if (context.started && !_settings.active)
+        else if (context.started && !_settings.activeInHierarchy)
         {
             _settings.SetActive(true);
             _movement.enabled = false;

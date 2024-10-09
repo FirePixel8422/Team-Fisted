@@ -55,6 +55,13 @@ public class EnemyAI : MonoBehaviour
         _state = State.Wandering;
     }
 
+    private void OnEnable()
+    {
+        _state = State.Wandering;
+
+        _components._agent.SetDestination(RandomNavmeshLocationLoc(transform.position, 50));
+    }
+
 
     private void Update()
     {
