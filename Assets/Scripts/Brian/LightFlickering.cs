@@ -9,7 +9,9 @@ public class LightFlickering : MonoBehaviour
 
     private void Start()
     {
-        _light = GetComponent<Light>();
+        if (GetComponent<Light>()) _light = GetComponent<Light>();
+
+        else if (GetComponentInChildren<Light>()) _light = GetComponentInChildren<Light>();
 
         StartCoroutine(Delay());
     }
