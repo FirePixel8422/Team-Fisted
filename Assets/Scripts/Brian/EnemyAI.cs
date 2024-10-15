@@ -30,6 +30,9 @@ public class EnemyAI : MonoBehaviour
     [Serializable]
     public class Components
     {
+        public GameObject _normalEnemy;
+        public GameObject _chaseEnemy;
+
         [HideInInspector] public Vector3 _lastAudioLoc;
 
         [HideInInspector] public List<Vector3> _lastKnowEnemyLocationList = new List<Vector3>();
@@ -45,6 +48,10 @@ public class EnemyAI : MonoBehaviour
 
         public Vector2 _ventDelayTime;
         public float _ventTime;
+
+        [Header("")]
+
+        public GameObject _gameLost;
     }
 
     public void Start()
@@ -53,6 +60,8 @@ public class EnemyAI : MonoBehaviour
         _components._ventTime = UnityEngine.Random.Range(_components._ventDelayTime.x, _components._ventDelayTime.y);
 
         _state = State.Wandering;
+
+        _components._chaseEnemy.SetActive(false);
     }
 
     private void OnEnable()
@@ -149,7 +158,7 @@ public class EnemyAI : MonoBehaviour
     {
         foreach (GameObject target in _components._target)
         {
-            if (Vector3.Distance(_components._camera.transform.position, target.transform.position) <= 15)
+            if (Vector3.Distance(_components._camera.transform.position, target.transform.position) <= 20)
             {
                 Vector3 viewPos = _components._camera.WorldToViewportPoint(target.transform.position);
                 if (viewPos.x >= 0 && viewPos.x <= 1 && viewPos.y >= 0 && viewPos.y <= 1 && viewPos.z > 0)
@@ -159,6 +168,8 @@ public class EnemyAI : MonoBehaviour
                     _components._lastEnemyLoc = _components._lastKnowEnemyLocationList[_components._lastKnowEnemyLocationList.Count - 1];
 
                     _state = State.chase;
+
+                    _components._chaseEnemy.SetActive(true);
 
                     StopCoroutine(SwitchStateDelay(15, State.WanderPlayer));
                 }
@@ -170,9 +181,9 @@ public class EnemyAI : MonoBehaviour
     {
         _components._agent.SetDestination(_components._lastEnemyLoc);
 
-        if(_components._agent.remainingDistance <= 1)
+        if(_components._agent.remainingDistance <= 5)
         {
-            if (Vector3.Distance(_components._target[0].transform.position, transform.position) <= 1)
+            if (Vector3.Distance(_components._target[0].transform.position, transform.position) <= 5)
             {
                 KillPlayer();
             }
@@ -252,6 +263,13 @@ public class EnemyAI : MonoBehaviour
     public void KillPlayer()
     {
         _state = State.GameEnd;
+
+        _components._gameLost.SetActive(true);
+
+        _components._target[0].GetComponent<Movement>().enabled = false;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
         Debug.LogError("dead");
     }

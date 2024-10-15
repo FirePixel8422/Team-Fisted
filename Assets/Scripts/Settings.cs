@@ -43,4 +43,9 @@ public class Settings : MonoBehaviour
             Screen.SetResolution(600, 800, true);
         }
     }
+
+    public void BacktoMenu()
+    {
+        SceneManager.LoadScene(SceneManager.sceneCount);
+    }
 }

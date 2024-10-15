@@ -10,11 +10,6 @@ public class CameraInterect : ObjectInterect
 
     public CameraControler _controler;
 
-    private void Start()
-    {
-        _controler.CameraSwitch();
-    }
-
     public override void Interect()
     {
         if (!_camerUI.activeSelf)

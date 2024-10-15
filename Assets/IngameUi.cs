@@ -74,4 +74,10 @@ public class IngameUi : MonoBehaviour
             _movement.enabled = false;
         }
     }
+
+    public void EscBack()
+    {
+        _settings.SetActive(false);
+        _movement.enabled = true;
+    }
 }
