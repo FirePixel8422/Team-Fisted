@@ -4,17 +4,25 @@ using UnityEngine;
 
 public class InterectDoor : ObjectInterect
 {
-    Animator _animator;
+    public Animator _animatorL, _animatorR;
 
-    private void Start()
-    {
-        _animator = GetComponent<Animator>();
-    }
+    public bool _open = false;
 
     public override void Interect()
     {
         Debug.LogWarning("Open Door");
 
-        _animator.SetBool("Switch", true);
+        _animatorL.SetBool("Open", true);
+        _animatorR.SetBool("Open", true);
+
+        StartCoroutine(Delay());
+    }
+
+    public IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(5);
+
+        _animatorL.SetBool("Open", false);
+        _animatorR.SetBool("Open", false);
     }
 }

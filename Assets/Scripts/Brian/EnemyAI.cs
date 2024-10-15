@@ -160,7 +160,7 @@ public class EnemyAI : MonoBehaviour
 
                     _state = State.chase;
 
-                    StopCoroutine(SwitchStateDelay(15, State.Wandering));
+                    StopCoroutine(SwitchStateDelay(15, State.WanderPlayer));
                 }
             }
         }
