@@ -17,7 +17,7 @@ public class ChaseStart : MonoBehaviour
         transform.localScale = Vector3.Lerp(Vector3.zero, new Vector3(1, 1, 1), scale);
         if (scale < 1)
         {
-            scale += growSpeed;
+            scale += growSpeed * Time.deltaTime;
         }
         else
         {
