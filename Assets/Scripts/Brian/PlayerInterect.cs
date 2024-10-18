@@ -9,6 +9,10 @@ public class PlayerInterect : MonoBehaviour
 
     InputAction _interect;
 
+    public LayerMask _interectLayer;
+
+    public GameObject _interectUi;
+
     private void Awake()
     {
         _input = new Input();
@@ -30,12 +34,39 @@ public class PlayerInterect : MonoBehaviour
         _interect = null;
     }
 
+    private void FixedUpdate()
+    {
+        LookAt();
+    }
+
+    ObjectInterect _lasthit;
+
+    public void LookAt()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(GetComponent<Movement>()._components._camera.transform.position, GetComponent<Movement>()._components._camera.transform.forward, out hit, 10, _interectLayer))
+        {
+            _lasthit = hit.transform.gameObject.GetComponent<ObjectInterect>();
+            _lasthit._interactUi.SetActive(true);
+        }
+
+        else if(_lasthit)
+        {
+            _lasthit._interactUi.SetActive(false);
+            _lasthit = null;
+        }
+    }
+
     void Interect(InputAction.CallbackContext context)
     {
         RaycastHit hit;
 
-        if(Physics.Raycast(GetComponent<Movement>()._components._camera.transform.position, GetComponent<Movement>()._components._camera.transform.forward, out hit, 5))
-        {
+        if (Physics.Raycast(GetComponent<Movement>()._components._camera.transform.position, GetComponent<Movement>()._components._camera.transform.forward, out hit, 10, _interectLayer))
+        { 
+            Debug.Log("Interect");
+            Debug.Log(hit.transform.name);
+        
             if (hit.transform.GetComponent<ObjectInterect>())
             {
                 hit.transform.GetComponent<ObjectInterect>().Interect();

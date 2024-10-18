@@ -48,4 +48,9 @@ public class Settings : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.sceneCount);
     }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }

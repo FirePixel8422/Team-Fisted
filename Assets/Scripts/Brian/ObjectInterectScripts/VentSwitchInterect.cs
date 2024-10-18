@@ -7,7 +7,7 @@ public class VentSwitchInterect : ObjectInterect
     public VentStateSystem _vent;
     Animator _animator;
 
-    private void Start()
+    public override void StartV()
     {
         _animator = GetComponent<Animator>();
     }

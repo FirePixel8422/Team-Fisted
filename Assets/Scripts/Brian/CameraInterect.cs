@@ -31,6 +31,11 @@ public class CameraInterect : ObjectInterect
         }
     }
 
+    public void Update()
+    {
+        
+    }
+
     public void EnableMouse()
     {
         _controler.CameraSwitch();

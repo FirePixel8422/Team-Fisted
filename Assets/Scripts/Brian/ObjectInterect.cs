@@ -4,6 +4,22 @@ using UnityEngine;
 
 public class ObjectInterect : MonoBehaviour
 {
+    public GameObject _interactUi;
+
+    private void Start()
+    {
+        _interactUi = GetComponentInChildren<Canvas>().gameObject;
+
+        _interactUi.SetActive(false);
+
+        StartV();
+    }
+
+    virtual public void StartV()
+    {
+
+    }
+
     virtual public void Interect()
     {
 

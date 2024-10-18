@@ -20,6 +20,14 @@ public class VentSystem : MonoBehaviour
         _ventState[i] = state;
     }
 
+    public void TurVentsOn()
+    {
+        for (int i = 0; i < _ventState.Length; i++)
+        {
+            _ventState[i] = VentState.Suck;
+        }
+    }
+
     public void SuckEnemy(GameObject obj, int i)
     {
         Debug.LogWarning("suck Enemy");
@@ -43,7 +51,6 @@ public class VentSystem : MonoBehaviour
         else
         {
             SuckEnemy(obj, i);
-            Debug.LogWarning("3");
         }
 
     }
