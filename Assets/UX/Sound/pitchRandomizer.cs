@@ -13,7 +13,8 @@ public class pitchRandomizer : MonoBehaviour
     public int listInt = 1;
     public float timer;
     public float soundCooldown;
-    
+    public int minCooldown;
+    public int maxCooldown;
 
     // Start is called before the first frame update
     void Start()
@@ -31,22 +32,25 @@ public class pitchRandomizer : MonoBehaviour
         if (timer > soundCooldown)
         {
             timer = 0;
-            currentAudioClip = StartCoroutine(SoundSelect());
-            PlayTrack();
-            soundCooldown = Random.Range(10, 30);
+                        
+            
+            randomNumber = Random.Range(0, arrayRange);
+            currentAudioClip = audioClip[randomNumber];
+            PlayTrack(currentAudioClip);
         }
     }
-    private IEnumerator SoundSelect()
-    {
-        randomNumber = Random.Range(0, arrayRange);
-        PlayTrack(randomNumber);
-        yield return currentAudioClip;
-    }
+    //private IEnumerator SoundSelect()
+    //{
+        
+    //    PlayTrack(randomNumber);
+        
+    //}
     public void PlayTrack(AudioClip audioclipIndex)
     {
-       
-        currentAudioClip = audioClip[randomNumber];
-        PlayTrack(randomNumber);
+
+        //currentAudioClip = audioClip[randomNumber];
+        source.clip = currentAudioClip;
         source.Play();
+        soundCooldown = Random.Range(minCooldown, maxCooldown);
     }
 }
