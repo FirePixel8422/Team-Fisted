@@ -10,6 +10,7 @@ public class CameraInterect : ObjectInterect
 
     public CameraControler _controler;
 
+
     public override void Interect()
     {
         if (!_camerUI.activeSelf)
@@ -29,11 +30,6 @@ public class CameraInterect : ObjectInterect
 
             EnableMouse();
         }
-    }
-
-    public void Update()
-    {
-        
     }
 
     public void EnableMouse()

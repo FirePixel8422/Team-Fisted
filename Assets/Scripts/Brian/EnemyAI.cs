@@ -45,6 +45,7 @@ public class EnemyAI : MonoBehaviour
 
         public GameObject[] _target;
         public GameObject[] _ventLoc;
+        public GameObject[] _spawnLoc;
 
         public Vector2 _ventDelayTime;
         public float _ventTime;
@@ -52,6 +53,13 @@ public class EnemyAI : MonoBehaviour
         [Header("")]
 
         public GameObject _gameLost;
+    }
+
+    private void Awake()
+    {
+        _components._agent.enabled = false;
+        transform.position = _components._spawnLoc[UnityEngine.Random.Range(0, _components._spawnLoc.Length)].transform.position;
+        _components._agent.enabled = true;
     }
 
     public void Start()
@@ -216,7 +224,7 @@ public class EnemyAI : MonoBehaviour
             _components._agent.SetDestination(_components._goVentLoc);
         }
 
-        if(_components._agent.remainingDistance <= .5f)
+        if(_components._agent.remainingDistance <= 0)
         {
             _state = State.Venting;
             Venting();

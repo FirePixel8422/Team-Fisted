@@ -189,6 +189,15 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Map"",
+                    ""type"": ""Button"",
+                    ""id"": ""0c00d0e3-23aa-49b4-a099-5456d12b3006"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -211,6 +220,17 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Tab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0c21d07a-2aeb-4217-98a6-b798d534acd4"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Map"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -276,6 +296,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
         m_Ui = asset.FindActionMap("Ui", throwIfNotFound: true);
         m_Ui_Esc = m_Ui.FindAction("Esc", throwIfNotFound: true);
         m_Ui_Tab = m_Ui.FindAction("Tab", throwIfNotFound: true);
+        m_Ui_Map = m_Ui.FindAction("Map", throwIfNotFound: true);
         // Interect
         m_Interect = asset.FindActionMap("Interect", throwIfNotFound: true);
         m_Interect_Interect = m_Interect.FindAction("Interect", throwIfNotFound: true);
@@ -405,12 +426,14 @@ public partial class @Input: IInputActionCollection2, IDisposable
     private List<IUiActions> m_UiActionsCallbackInterfaces = new List<IUiActions>();
     private readonly InputAction m_Ui_Esc;
     private readonly InputAction m_Ui_Tab;
+    private readonly InputAction m_Ui_Map;
     public struct UiActions
     {
         private @Input m_Wrapper;
         public UiActions(@Input wrapper) { m_Wrapper = wrapper; }
         public InputAction @Esc => m_Wrapper.m_Ui_Esc;
         public InputAction @Tab => m_Wrapper.m_Ui_Tab;
+        public InputAction @Map => m_Wrapper.m_Ui_Map;
         public InputActionMap Get() { return m_Wrapper.m_Ui; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -426,6 +449,9 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @Tab.started += instance.OnTab;
             @Tab.performed += instance.OnTab;
             @Tab.canceled += instance.OnTab;
+            @Map.started += instance.OnMap;
+            @Map.performed += instance.OnMap;
+            @Map.canceled += instance.OnMap;
         }
 
         private void UnregisterCallbacks(IUiActions instance)
@@ -436,6 +462,9 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @Tab.started -= instance.OnTab;
             @Tab.performed -= instance.OnTab;
             @Tab.canceled -= instance.OnTab;
+            @Map.started -= instance.OnMap;
+            @Map.performed -= instance.OnMap;
+            @Map.canceled -= instance.OnMap;
         }
 
         public void RemoveCallbacks(IUiActions instance)
@@ -517,6 +546,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
     {
         void OnEsc(InputAction.CallbackContext context);
         void OnTab(InputAction.CallbackContext context);
+        void OnMap(InputAction.CallbackContext context);
     }
     public interface IInterectActions
     {

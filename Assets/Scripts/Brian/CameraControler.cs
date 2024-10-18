@@ -30,4 +30,9 @@ public class CameraControler : MonoBehaviour
             _cameraOnn = true;
         }
     }
+
+    public void BigCamera(int i)
+    {
+        Debug.LogError(i);
+    }
 }

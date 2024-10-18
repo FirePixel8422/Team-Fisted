@@ -9,9 +9,11 @@ public class IngameUi : MonoBehaviour
 
     InputAction _tab;
     InputAction _esc;
+    InputAction _map;
 
     public GameObject _helpTab;
     public GameObject _settings;
+    public GameObject _mapS;
 
     Movement _movement;
 
@@ -31,12 +33,13 @@ public class IngameUi : MonoBehaviour
 
         _tab = _input.Ui.Tab;
         _esc = _input.Ui.Esc;
+        _map = _input.Ui.Map;
 
         _tab.started += Tab;
-        _tab.canceled += Tab;
+
+        _map.started += Map;
 
         _esc.started += Esc;
-        _esc.canceled += Esc;
     }
 
     private void OnDisable()
@@ -45,6 +48,7 @@ public class IngameUi : MonoBehaviour
 
         _tab = null;
         _esc = null;
+        _map = null;
     }
 
     public void Tab(InputAction.CallbackContext context)
@@ -58,6 +62,19 @@ public class IngameUi : MonoBehaviour
         {
             _helpTab.SetActive(true);
         }
+    }
+
+    public void Map(InputAction.CallbackContext context)
+    {
+        //if (context.started && _mapS.activeInHierarchy)
+        //{
+        //    _mapS.SetActive(false);
+        //}
+
+        //else if (context.started && !_mapS.activeInHierarchy)
+        //{
+        //    _mapS.SetActive(true);
+        //}
     }
 
     public void Esc(InputAction.CallbackContext context)
