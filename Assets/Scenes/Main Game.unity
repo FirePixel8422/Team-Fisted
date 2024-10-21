@@ -4078,7 +4078,9 @@ MonoBehaviour:
     _ventTime: 0
     _gameLost: {fileID: 620652599}
     heartbeat: {fileID: 1328216748}
-    heartbeatSpeed: 0.5
+    heartbeatSpeed: 0
+    duration: 5
+    elapsedTime: 0
   _swicthOn: 0
 --- !u!4 &359276648
 Transform:
