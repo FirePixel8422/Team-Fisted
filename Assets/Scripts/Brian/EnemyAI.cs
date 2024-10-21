@@ -301,18 +301,23 @@ public class EnemyAI : MonoBehaviour
         _components._normalEnemy.SetActive(false);
         StopCoroutine(DeactivateIdle(0));
     }
-
+    // Ro Nieuwe Coroutine om de heartbeat rustig aan te zetten
     private IEnumerator HeartBeatLerp(float startValue, float targetValue)
     {
-        _components.elapsedTime = 0;
+        _components.elapsedTime = 0; // Ensure this starts from zero each time
 
         while (_components.elapsedTime < _components.duration)
         {
             _components.elapsedTime += Time.deltaTime;
 
-            _components.heartbeat.pitch = Mathf.Lerp(startValue, targetValue, _components.elapsedTime / _components.duration);
+            float t = _components.elapsedTime / _components.duration;
+            _components.heartbeat.pitch = Mathf.Lerp(startValue, targetValue, t);
 
-            yield return null;
+            yield return null; // Wait for the next frame
         }
+
+        // Ensure the final value is set
+        _components.heartbeat.pitch = targetValue;
     }
+
 }
