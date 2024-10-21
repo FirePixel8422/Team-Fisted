@@ -14,7 +14,7 @@ public enum State
     WanderPlayer,
     goToVent,
     Venting,
-    GameEnd
+    GameEnd,
 }
 
 public class EnemyAI : MonoBehaviour

@@ -4,14 +4,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.Rendering.DebugUI;
-
+/*
 public enum State
 {
     none,
     Normal,
     Chase,
     Sprint,
-}
+}*/
 public class soundRandomizer : MonoBehaviour
 {
     #region Variables
@@ -42,6 +42,10 @@ public class soundRandomizer : MonoBehaviour
 
     public State state;
     #endregion
+    
+    
+    
+    /*
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +56,7 @@ public class soundRandomizer : MonoBehaviour
         soundCooldown = Random.Range(minCooldown, maxCooldown);
         StartCoroutine(Normal());
     }
+    
     // Update is called once per frame
     void Update()
     {
@@ -75,6 +80,8 @@ public class soundRandomizer : MonoBehaviour
 
         timer += Time.deltaTime;
     }
+    
+    
     public IEnumerator Normal()
     {
        yield return new WaitForSeconds(soundCooldown);
@@ -101,6 +108,7 @@ public class soundRandomizer : MonoBehaviour
             state = State.sprint;
         }
     }
+
     public IEnumerator Chase()
     {
         yield return new WaitForSeconds(soundCooldown);
@@ -123,6 +131,7 @@ public class soundRandomizer : MonoBehaviour
             state = State.Normal;
         }
     }
+    
     public IEnumerator Sprint()
     {
         yield return new WaitForSeconds(soundCooldown);
@@ -143,4 +152,5 @@ public class soundRandomizer : MonoBehaviour
         }
         StartCoroutine(Sprint());
     }
+    */
 }
