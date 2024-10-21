@@ -12,23 +12,28 @@ public class InterectDoor : ObjectInterect
     public AudioSource _source;
 
     public bool _open = false;
-
     public override void Interect()
     {
-        Debug.LogWarning("Open Door");
+        if (_open == false)
+        {
+            _open = true;
+            Debug.LogWarning("Open Door");
 
-        _animatorL.SetBool("Open", true);
-        _animatorR.SetBool("Open", true);
+            _animatorL.SetBool("Open", true);
+            _animatorR.SetBool("Open", true);
 
-        //Play door open sound
-        _source.clip = audioOpen;
-        _source.Play();
-        StartCoroutine(Delay());
+            //Play door open sound
+            _source.clip = audioOpen;
+            _source.Play();
+            StartCoroutine(Delay());
+        }
+        
     }
 
     public IEnumerator Delay()
     {
         yield return new WaitForSeconds(3);
+
         //Play door close sound
         _source.clip = audioClose;
         _source.Play();
@@ -38,7 +43,8 @@ public class InterectDoor : ObjectInterect
         _animatorL.SetBool("Open", false);
         _animatorR.SetBool("Open", false);
 
-        
+        yield return new WaitForSeconds(2);
+        _open = false;
     }
 
 

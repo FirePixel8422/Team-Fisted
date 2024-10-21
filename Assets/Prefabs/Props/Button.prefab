@@ -188,8 +188,8 @@ MonoBehaviour:
   _interactUi: {fileID: 0}
   _animatorL: {fileID: 0}
   _animatorR: {fileID: 0}
-  audioOpen: {fileID: 8300000, guid: a514e52fb28f1f84c8d4905aa8786bfd, type: 3}
-  audioClose: {fileID: 8300000, guid: cb5dc197a03b4204791d9ee2564ee0e5, type: 3}
+  audioOpen: {fileID: 8300000, guid: 88943e288656b7d42bcafbc050709bfe, type: 3}
+  audioClose: {fileID: 8300000, guid: 87c1ab8629ecda94e9c0d65d0a9657e7, type: 3}
   _source: {fileID: 1015621965129305949}
   _open: 0
 --- !u!82 &1015621965129305949

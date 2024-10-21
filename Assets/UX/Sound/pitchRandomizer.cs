@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class pitchRandomizer : MonoBehaviour
 {
@@ -21,18 +22,21 @@ public class pitchRandomizer : MonoBehaviour
     public float timer;
     public float soundCooldown;
 
-    public int minCooldown;
-    public int maxCooldown;
+    public float minCooldown, maxCooldown;
 
-    public bool chaseMode;
-    public int chaseMinCooldown;
-    public int chaseMaxCooldown;
+    //public bool chaseMode;
+    //public int chaseMinCooldown;
+    //public int chaseMaxCooldown;
 
 
     // Start is called before the first frame update
     void Start()
-    { 
-        
+    {
+        arrayRange = audioClip.Length;
+
+        randomNumber = Random.Range(0, arrayRange);
+        soundCooldown = Random.Range(minCooldown, maxCooldown);
+        StartCoroutine(DelaySounds());
     }
     // Update is called once per frame
     void Update()
@@ -52,8 +56,8 @@ public class pitchRandomizer : MonoBehaviour
         {
             timer = 0;
                         
-            randomNumber = Random.Range(0, arrayRange);
-            currentAudioClip = audioClip[randomNumber];
+            
+            
             PlayTrack(currentAudioClip);
         }
     }
@@ -67,8 +71,21 @@ public class pitchRandomizer : MonoBehaviour
     {
 
         //currentAudioClip = audioClip[randomNumber];
+        
+        
+    }
+    public IEnumerator DelaySounds()
+    {
+        yield return new WaitForSeconds(soundCooldown);
+
+        Debug.LogWarning("Eerie Sound");
+
+        currentAudioClip = audioClip[randomNumber];
         source.clip = currentAudioClip;
         source.Play();
+
         soundCooldown = Random.Range(minCooldown, maxCooldown);
+        randomNumber = Random.Range(0, arrayRange);
+        StartCoroutine(DelaySounds());
     }
 }

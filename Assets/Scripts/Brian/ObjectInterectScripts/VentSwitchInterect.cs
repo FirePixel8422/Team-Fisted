@@ -7,6 +7,9 @@ public class VentSwitchInterect : ObjectInterect
     public VentStateSystem _vent;
     Animator _animator;
 
+    //SFX
+    public AudioSource _audioSource;
+
     public override void StartV()
     {
         _animator = GetComponent<Animator>();
@@ -18,5 +21,8 @@ public class VentSwitchInterect : ObjectInterect
 
         _animator.SetBool("Switch", true);
         _vent.TurnOnn();
+
+        //SFX
+        _audioSource.Play();
     }
 }

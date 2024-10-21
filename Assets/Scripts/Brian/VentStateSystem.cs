@@ -11,6 +11,9 @@ public class VentStateSystem : MonoBehaviour
     bool _onn = false;
 
     int _index;
+
+    //SFX
+    public AudioSource _audioSource;
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -33,6 +36,9 @@ public class VentStateSystem : MonoBehaviour
             _animator.SetBool("Switch", true);
             smokePar.SetActive(false);
             _onn = true;
+
+            //SFX
+            _audioSource.Play();
         }
     }
 
@@ -49,6 +55,7 @@ public class VentStateSystem : MonoBehaviour
             {
                 _ventSystem._ventState[_index] = VentState.Blow;
             }
+
         }
     }
 

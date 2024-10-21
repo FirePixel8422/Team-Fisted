@@ -53,6 +53,10 @@ public class EnemyAI : MonoBehaviour
         [Header("")]
 
         public GameObject _gameLost;
+        // Ro Heartbeat SFX
+        public AudioSource heartbeat;
+        public float heartbeatSpeed;
+        public float duration, elapsedTime;
     }
 
     private void Awake()
@@ -118,6 +122,7 @@ public class EnemyAI : MonoBehaviour
 
                 break;
         }
+        
     }
 
     public void RandomRaoming()
@@ -181,6 +186,8 @@ public class EnemyAI : MonoBehaviour
                     // Ro Start Coroutine
                     StartCoroutine(DeactivateIdle(2f));
 
+                    StartCoroutine(HeartBeatLerp(0f, 1.5f));
+
                     StopCoroutine(SwitchStateDelay(15, State.WanderPlayer));
                 }
             }
@@ -211,6 +218,7 @@ public class EnemyAI : MonoBehaviour
         // Ro Switch de active enemy terug als enemy speler kwijt is.
         _components._normalEnemy.SetActive(true);
         _components._chaseEnemy.SetActive(false);
+        StartCoroutine(HeartBeatLerp(1.5f, 0f));
 
         if (_components._agent.remainingDistance < 1)
         {
@@ -292,5 +300,19 @@ public class EnemyAI : MonoBehaviour
         yield return new WaitForSeconds(delay);
         _components._normalEnemy.SetActive(false);
         StopCoroutine(DeactivateIdle(0));
+    }
+
+    private IEnumerator HeartBeatLerp(float startValue, float targetValue)
+    {
+        _components.elapsedTime = 0;
+
+        while (_components.elapsedTime < _components.duration)
+        {
+            _components.elapsedTime += Time.deltaTime;
+
+            _components.heartbeat.pitch = Mathf.Lerp(startValue, targetValue, _components.elapsedTime / _components.duration);
+
+            yield return null;
+        }
     }
 }
