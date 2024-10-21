@@ -160,6 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ventSystem: {fileID: 0}
+  smokePar: {fileID: 4646276703250512745}
 --- !u!4 &2200770050464439233 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 33deae74719750c4f86c068bd7783c07, type: 3}
@@ -264,6 +265,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cfb331acba4f4e42a77ec9be138796f, type: 3}
+--- !u!1 &4646276703250512745 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4151553431375476216, guid: 3cfb331acba4f4e42a77ec9be138796f, type: 3}
+  m_PrefabInstance: {fileID: 8784169724815281809}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8955169539493751416 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 405470120286577897, guid: 3cfb331acba4f4e42a77ec9be138796f, type: 3}

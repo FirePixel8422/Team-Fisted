@@ -6,6 +6,7 @@ public class VentStateSystem : MonoBehaviour
 {
     public VentSystem _ventSystem;
     Animator _animator;
+    public GameObject smokePar;
 
     bool _onn = false;
 
@@ -30,6 +31,7 @@ public class VentStateSystem : MonoBehaviour
             _ventSystem._ventState[_index] = VentState.Suck;
 
             _animator.SetBool("Switch", true);
+            smokePar.SetActive(false);
             _onn = true;
         }
     }

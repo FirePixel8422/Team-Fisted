@@ -178,6 +178,8 @@ public class EnemyAI : MonoBehaviour
                     _state = State.chase;
 
                     _components._chaseEnemy.SetActive(true);
+                    // Ro Start Coroutine
+                    StartCoroutine(DeactivateIdle(2f));
 
                     StopCoroutine(SwitchStateDelay(15, State.WanderPlayer));
                 }
@@ -206,6 +208,9 @@ public class EnemyAI : MonoBehaviour
     public void WanderPlayerLoc()
     {
         StartCoroutine(SwitchStateDelay(15, State.Wandering));
+        // Ro Switch de active enemy terug als enemy speler kwijt is.
+        _components._normalEnemy.SetActive(true);
+        _components._chaseEnemy.SetActive(false);
 
         if (_components._agent.remainingDistance < 1)
         {
@@ -280,5 +285,12 @@ public class EnemyAI : MonoBehaviour
         Cursor.visible = true;
 
         Debug.LogError("dead");
+    }
+    // Ro Nieuwe Coroutine om de normale enmey uit te zetten na 2 secondenn zodat de chase versie eerst volledig is gegroeit.
+    private IEnumerator DeactivateIdle(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        _components._normalEnemy.SetActive(false);
+        StopCoroutine(DeactivateIdle(0));
     }
 }
