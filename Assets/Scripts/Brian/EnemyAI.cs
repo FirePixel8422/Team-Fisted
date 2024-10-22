@@ -236,7 +236,7 @@ public class EnemyAI : MonoBehaviour
             _components._agent.SetDestination(_components._goVentLoc);
         }
 
-        if(_components._agent.remainingDistance <= 0)
+        if(_components._agent.remainingDistance <= 0.1)
         {
             _state = State.Venting;
             Venting();
