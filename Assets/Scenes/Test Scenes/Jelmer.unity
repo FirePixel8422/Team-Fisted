@@ -622,6 +622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44bcd6582458f7544bd1368ce277f4b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _moveDirection: {x: 0, y: 0}
   arrayRange: 0
   source: {fileID: 1892013752}
   audioClip:
@@ -637,9 +638,13 @@ MonoBehaviour:
   maxCooldown: 0.7
   minCooldownChase: 0.35
   maxCooldownChase: 0.45
-  chase: 0
+  minCooldownSprint: 0
+  maxCooldownSprint: 0
+  chaseStateOn: 0
+  sprintStateOn: 0
+  sprintOn: 0
   enemy: {fileID: 0}
-  player: {fileID: 0}
+  walk: 0
 --- !u!4 &1892013754
 Transform:
   m_ObjectHideFlags: 0
@@ -1510,6 +1515,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac8732d54b7c94f4fa63b41b08f99e5c, type: 3}
+--- !u!1001 &6776011781612723738
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 376975461739977564, guid: 6d56496cb1d9f2f4ab026ac79bea290c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -16.574
+      objectReference: {fileID: 0}
+    - target: {fileID: 376975461739977564, guid: 6d56496cb1d9f2f4ab026ac79bea290c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 376975461739977564, guid: 6d56496cb1d9f2f4ab026ac79bea290c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 376975461739977564, guid: 6d56496cb1d9f2f4ab026ac79bea290c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 376975461739977564, guid: 6d56496cb1d9f2f4ab026ac79bea290c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 376975461739977564, guid: 6d56496cb1d9f2f4ab026ac79bea290c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 376975461739977564, guid: 6d56496cb1d9f2f4ab026ac79bea290c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 376975461739977564, guid: 6d56496cb1d9f2f4ab026ac79bea290c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 376975461739977564, guid: 6d56496cb1d9f2f4ab026ac79bea290c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 376975461739977564, guid: 6d56496cb1d9f2f4ab026ac79bea290c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040500306082562534, guid: 6d56496cb1d9f2f4ab026ac79bea290c, type: 3}
+      propertyPath: m_Name
+      value: Rode lamp
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6d56496cb1d9f2f4ab026ac79bea290c, type: 3}
 --- !u!1001 &7116531481801274617
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1882,3 +1944,4 @@ SceneRoots:
   - {fileID: 254945842}
   - {fileID: 8459505221852702738}
   - {fileID: 1892013754}
+  - {fileID: 6776011781612723738}
