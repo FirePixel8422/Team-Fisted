@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class VentStateSystem : MonoBehaviour
 {
     public VentSystem _ventSystem;
     Animator _animator;
     public GameObject smokePar;
+    public RawImage rawImage;
 
     bool _onn = false;
 
@@ -39,6 +41,7 @@ public class VentStateSystem : MonoBehaviour
 
             //SFX
             _audioSource.Play();
+            rawImage.color = Color.green;
         }
     }
 
