@@ -39,32 +39,35 @@ public class VentSystem : MonoBehaviour
 
     public void Suck(GameObject obj, int i)
     {
-        Debug.LogWarning("suck Enemy");
-
         i++;
 
-        if (_ventState[i] != VentState.Suck)
+        if (_ventObj.Length <= i)
         {
+            Debug.LogWarning("END");
+            Suck(obj, 0);
+        }
+
+        if(_ventState[i] != VentState.Suck)
+        {
+            Debug.LogWarning("Blow");
+
             obj.GetComponent<NavMeshAgent>().enabled = false;
             obj.transform.position = _ventObj[i].transform.position;
             obj.GetComponent<NavMeshAgent>().enabled = true;
-            Debug.LogWarning("2");
         }
 
-        else if (_ventObj.Length <= i)
+        if (i == _ventIn)
         {
-            SuckEnemy(obj, 0);
-        }
+            Debug.LogWarning("GAME END");
 
-        else if (i == _ventIn)
-        {
             obj.GetComponent<NavMeshAgent>().enabled = false;
             obj.transform.position = _endVent.transform.position;
         }
 
         else
         {
-            SuckEnemy(obj, i);
+            Debug.LogWarning("USE");
+            Suck(obj, i);
         }
     }
 }
