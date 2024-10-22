@@ -33,6 +33,8 @@ public class IngameUi : MonoBehaviour
     private void Start()
     {
         _movement = GetComponent<Movement>();
+        
+        //SFX shit
         if (PlayerPrefs.GetFloat("SFX Volume") != null)
         {
             _sfxMixer.SetFloat("Volume", Mathf.Log10(PlayerPrefs.GetFloat("SFX Volume")) * 20);
@@ -100,31 +102,39 @@ public class IngameUi : MonoBehaviour
         if (context.started && _settings.activeInHierarchy)
         {
             _settings.SetActive(false);
-            _sfxMixer.SetFloat("Volume", Mathf.Log10(_sfxSlider.value) * 20);
             _movement.enabled = true;
+
+            //SFX volume ON
+            _sfxMixer.SetFloat("Volume", Mathf.Log10(_sfxSlider.value) * 20);
         }
 
         else if (context.started && !_settings.activeInHierarchy)
         {
             _settings.SetActive(true);
-            _sfxMixer.SetFloat("Volume", -100);
             _movement.enabled = false;
+
+            //SFX volume OFF
+            _sfxMixer.SetFloat("Volume", -100);
         }
     }
 
     public void EscBack()
     {
         _settings.SetActive(false);
-        _sfxMixer.SetFloat("Volume", Mathf.Log10(_sfxSlider.value) * 20);
         _movement.enabled = true;
+
+        //SFX volume ON
+        _sfxMixer.SetFloat("Volume", Mathf.Log10(_sfxSlider.value) * 20);
     }
 
+    //Music volume slider
     public void MusicVolume()
     {
         _musicMixer.SetFloat("Volume", Mathf.Log10(_musicSlider.value) * 20);
         PlayerPrefs.SetFloat("Music Volume", _musicSlider.value);
     }
 
+    //SFX volume slider
     public void SFXVolume()
     {
         PlayerPrefs.SetFloat("SFX Volume", _sfxSlider.value);
