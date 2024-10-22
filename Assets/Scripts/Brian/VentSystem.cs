@@ -45,6 +45,8 @@ public class VentSystem : MonoBehaviour
         {
             Debug.LogWarning("END");
             Suck(obj, 0);
+
+            return;
         }
 
         if(_ventState[i] != VentState.Suck)
@@ -54,6 +56,8 @@ public class VentSystem : MonoBehaviour
             obj.GetComponent<NavMeshAgent>().enabled = false;
             obj.transform.position = _ventObj[i].transform.position;
             obj.GetComponent<NavMeshAgent>().enabled = true;
+
+            return;
         }
 
         if (i == _ventIn)
@@ -62,6 +66,8 @@ public class VentSystem : MonoBehaviour
 
             obj.GetComponent<NavMeshAgent>().enabled = false;
             obj.transform.position = _endVent.transform.position;
+
+            return;
         }
 
         else
