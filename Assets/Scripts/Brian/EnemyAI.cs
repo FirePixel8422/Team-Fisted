@@ -55,8 +55,7 @@ public class EnemyAI : MonoBehaviour
         public GameObject _gameLost;
         // Ro Heartbeat SFX
         public AudioSource heartbeat;
-        public float heartbeatSpeed;
-        public float duration, elapsedTime;
+        public float heartbeatSpeed, heartbeatPitch;
     }
 
     private void Awake()
@@ -304,20 +303,41 @@ public class EnemyAI : MonoBehaviour
     // Ro Nieuwe Coroutine om de heartbeat rustig aan te zetten
     private IEnumerator HeartBeatLerp(float startValue, float targetValue)
     {
-        _components.elapsedTime = 0; // Ensure this starts from zero each time
-
-        while (_components.elapsedTime < _components.duration)
+        if (targetValue > 0)
         {
-            _components.elapsedTime += Time.deltaTime;
+            while (_components.heartbeat.pitch < targetValue)
+            {
+                _components.heartbeat.pitch = Mathf.Lerp(startValue, targetValue, _components.heartbeatPitch);
+                _components.heartbeatPitch += _components.heartbeatSpeed * Time.deltaTime;
+                Debug.Log("Chase start heartbeat");
 
-            float t = _components.elapsedTime / _components.duration;
-            _components.heartbeat.pitch = Mathf.Lerp(startValue, targetValue, t);
+                if (_components.heartbeat.pitch == targetValue)
+                {
+                    _components.heartbeatPitch = 0;
+                    Debug.Log("Heartbeat max");
+                    break;
+                }
 
-            yield return null; // Wait for the next frame
+                yield return null; // Wait for the next frame
+            }
         }
+        else
+        {
+            while (_components.heartbeat.pitch > targetValue)
+            {
+                _components.heartbeat.pitch = Mathf.Lerp(startValue, targetValue, _components.heartbeatPitch);
+                _components.heartbeatPitch += _components.heartbeatSpeed * Time.deltaTime;
+                Debug.Log("Chase Stop heartbeat");
+                if (_components.heartbeat.pitch == targetValue)
+                {
+                    _components.heartbeatPitch = 0;
+                    Debug.Log("heartbeat stopped");
+                    break;
+                }
 
-        // Ensure the final value is set
-        _components.heartbeat.pitch = targetValue;
+                yield return null; // Wait for the next frame
+            }
+        }
     }
 
 }
