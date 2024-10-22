@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class IngameUi : MonoBehaviour
 {
@@ -15,7 +17,13 @@ public class IngameUi : MonoBehaviour
     public GameObject _settings;
     public GameObject _mapS;
 
+    public AudioMixer _sfxMixer, _musicMixer;
+
+    private float sfxVolume, musicVolume;
+    public Slider sfxSlider, musicSlider;
+
     Movement _movement;
+
 
     private void Awake()
     {
@@ -82,12 +90,14 @@ public class IngameUi : MonoBehaviour
         if (context.started && _settings.activeInHierarchy)
         {
             _settings.SetActive(false);
+            _sfxMixer.SetFloat("Volume", 0);
             _movement.enabled = true;
         }
 
         else if (context.started && !_settings.activeInHierarchy)
         {
             _settings.SetActive(true);
+            _sfxMixer.SetFloat("Volume", -100);
             _movement.enabled = false;
         }
     }
@@ -95,6 +105,7 @@ public class IngameUi : MonoBehaviour
     public void EscBack()
     {
         _settings.SetActive(false);
+        _sfxMixer.SetFloat("Volume", 0);
         _movement.enabled = true;
     }
 }
