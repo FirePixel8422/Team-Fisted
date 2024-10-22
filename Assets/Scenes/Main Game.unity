@@ -4252,8 +4252,7 @@ MonoBehaviour:
     _gameLost: {fileID: 620652599}
     heartbeat: {fileID: 1328216748}
     heartbeatSpeed: 0
-    duration: 5
-    elapsedTime: 0
+    heartbeatPitch: 0
   _swicthOn: 0
 --- !u!4 &359276648
 Transform:
@@ -37032,7 +37031,7 @@ AudioSource:
   m_GameObject: {fileID: 1328216746}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 2e5b8f627edded644bb10b286ae63927, type: 2}
   m_audioClip: {fileID: 8300000, guid: 91634a62ec4716246a005463da4cf362, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -41133,7 +41132,7 @@ AudioSource:
   m_GameObject: {fileID: 1698302164}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 2e5b8f627edded644bb10b286ae63927, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.2
@@ -45654,7 +45653,7 @@ AudioSource:
   m_GameObject: {fileID: 2044885678}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 2e5b8f627edded644bb10b286ae63927, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1

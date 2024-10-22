@@ -6,7 +6,7 @@ AudioMixerController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SFX
+  m_Name: Music
   m_OutputGroup: {fileID: 0}
   m_MasterGroup: {fileID: 24300002}
   m_Snapshots:
@@ -16,11 +16,11 @@ AudioMixerController:
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters:
-  - guid: 454f8d00a7722a941a0f35dc032c2e09
+  - guid: f247a8eb797f04f44bb6fb6e22e58ee4
     name: Volume
   m_AudioMixerGroupViews:
   - guids:
-    - 76769c8f3235ff542bfbcadeeea5b176
+    - bb84eb545bd8d0c4294c095fe28cac5a
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -32,10 +32,10 @@ AudioMixerGroupController:
   m_PrefabAsset: {fileID: 0}
   m_Name: Master
   m_AudioMixer: {fileID: 24100000}
-  m_GroupID: 76769c8f3235ff542bfbcadeeea5b176
+  m_GroupID: bb84eb545bd8d0c4294c095fe28cac5a
   m_Children: []
-  m_Volume: 454f8d00a7722a941a0f35dc032c2e09
-  m_Pitch: d0ad9886685d75e4d88cf3a7906d101e
+  m_Volume: f247a8eb797f04f44bb6fb6e22e58ee4
+  m_Pitch: 5aacae194fd7d9f49bac0b1a374577a8
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 24400004}
@@ -50,9 +50,9 @@ AudioMixerEffectController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_EffectID: 9c27935fec00f4f46b662d303d59bebe
+  m_EffectID: cdc30c050338c3343b72fc1564d23173
   m_EffectName: Attenuation
-  m_MixLevel: 1ea67e4a7da50ae4b98775618b5307b3
+  m_MixLevel: be0aec21b9c364749b9167e0894b61bd
   m_Parameters: []
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
@@ -65,6 +65,6 @@ AudioMixerSnapshotController:
   m_PrefabAsset: {fileID: 0}
   m_Name: Snapshot
   m_AudioMixer: {fileID: 24100000}
-  m_SnapshotID: 4b3b796897294af47a0f790d5d429994
+  m_SnapshotID: 43bae1206b8357c40b5655bb04253298
   m_FloatValues: {}
   m_TransitionOverrides: {}

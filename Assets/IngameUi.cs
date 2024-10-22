@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class IngameUi : MonoBehaviour
@@ -19,8 +20,7 @@ public class IngameUi : MonoBehaviour
 
     public AudioMixer _sfxMixer, _musicMixer;
 
-    private float sfxVolume, musicVolume;
-    public Slider sfxSlider, musicSlider;
+    public Slider _sfxSlider, _musicSlider;
 
     Movement _movement;
 
@@ -33,6 +33,16 @@ public class IngameUi : MonoBehaviour
     private void Start()
     {
         _movement = GetComponent<Movement>();
+        if (PlayerPrefs.GetFloat("SFX Volume") != null)
+        {
+            _sfxMixer.SetFloat("Volume", Mathf.Log10(PlayerPrefs.GetFloat("SFX Volume")) * 20);
+            _sfxSlider.value = PlayerPrefs.GetFloat("SFX Volume");
+        }
+        if (PlayerPrefs.GetFloat("Music Volume") != null)
+        {
+            _musicMixer.SetFloat("Volume", Mathf.Log10(PlayerPrefs.GetFloat("Music Volume")) * 20);
+            _musicSlider.value = PlayerPrefs.GetFloat("Music Volume");
+        }
     }
 
     private void OnEnable()
@@ -90,7 +100,7 @@ public class IngameUi : MonoBehaviour
         if (context.started && _settings.activeInHierarchy)
         {
             _settings.SetActive(false);
-            _sfxMixer.SetFloat("Volume", 0);
+            _sfxMixer.SetFloat("Volume", Mathf.Log10(_sfxSlider.value) * 20);
             _movement.enabled = true;
         }
 
@@ -105,7 +115,18 @@ public class IngameUi : MonoBehaviour
     public void EscBack()
     {
         _settings.SetActive(false);
-        _sfxMixer.SetFloat("Volume", 0);
+        _sfxMixer.SetFloat("Volume", Mathf.Log10(_sfxSlider.value) * 20);
         _movement.enabled = true;
+    }
+
+    public void MusicVolume()
+    {
+        _musicMixer.SetFloat("Volume", Mathf.Log10(_musicSlider.value) * 20);
+        PlayerPrefs.SetFloat("Music Volume", _musicSlider.value);
+    }
+
+    public void SFXVolume()
+    {
+        PlayerPrefs.SetFloat("SFX Volume", _sfxSlider.value);
     }
 }
