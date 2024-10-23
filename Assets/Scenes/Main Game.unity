@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0, g: 0, b: 0, a: 1}
   m_FogMode: 2
-  m_FogDensity: 0.1
+  m_FogDensity: 0.06
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -4410,9 +4410,6 @@ MonoBehaviour:
     _ventDelayTime: {x: 15, y: 30}
     _ventTime: 0
     _gameLost: {fileID: 620652599}
-    heartbeat: {fileID: 1328216748}
-    heartbeatSpeed: 0.01
-    heartbeatPitch: 0
     jumpscare: {fileID: 5132184099372004624, guid: f76deac63688ea0428bb7b82b6a1199b, type: 3}
     camera: {fileID: 221938359}
   _swicthOn: 0

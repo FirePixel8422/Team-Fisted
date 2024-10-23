@@ -4180,6 +4180,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 629646641104499813, guid: b881aba2ea51862478164f03b697ea5f, type: 3}
+      propertyPath: CollisionModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6394847419509203622, guid: b881aba2ea51862478164f03b697ea5f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7679,9 +7683,6 @@ MonoBehaviour:
     _ventDelayTime: {x: 15, y: 30}
     _ventTime: 0
     _gameLost: {fileID: 195730672}
-    heartbeat: {fileID: 1593342721}
-    heartbeatSpeed: 0.01
-    heartbeatPitch: 0
     jumpscare: {fileID: 5132184099372004624, guid: f76deac63688ea0428bb7b82b6a1199b, type: 3}
     camera: {fileID: 195730665}
   _swicthOn: 0
@@ -41773,6 +41774,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 508109435}
   breathSFX: {fileID: 751283407}
+  heartbeat: {fileID: 0}
+  lerpSpeed: 0
 --- !u!114 &1493408225
 MonoBehaviour:
   m_ObjectHideFlags: 0
