@@ -152,7 +152,7 @@ public class EnemyAI : MonoBehaviour
 
     public void GoToSound()
     {
-        _components._agent.SetDestination(_components._lastAudioLoc);
+        _components._agent.SetDestination(RandomNavmeshLocationLoc(_components._lastAudioLoc, 10));
 
         if (_components._agent.remainingDistance <= 0)
         {
