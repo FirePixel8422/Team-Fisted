@@ -464,7 +464,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7773635463741713614
 Transform:
@@ -598,7 +598,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5469473143465922099
 Transform:
@@ -797,7 +797,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 95befe37f36aa7b44a511c2a946ec29d, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6745302439343835087, guid: 95befe37f36aa7b44a511c2a946ec29d, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -895,6 +895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interactUi: {fileID: 0}
   _vent: {fileID: 0}
+  _audioSource: {fileID: 0}
 --- !u!1 &5542020898409566718 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -466329591000292508, guid: 95befe37f36aa7b44a511c2a946ec29d, type: 3}

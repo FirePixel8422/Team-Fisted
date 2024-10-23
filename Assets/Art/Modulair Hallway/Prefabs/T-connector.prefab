@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Panel (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: de673417c6548e54da2168bfc310393a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -121,6 +125,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: de673417c6548e54da2168bfc310393a, type: 3}
       propertyPath: m_Name
       value: Panel (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: de673417c6548e54da2168bfc310393a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -188,6 +196,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: vent (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d4fcbac0420567d40abaccfb1268f8d9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -253,6 +265,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 48d5908228a9e7442b869e861d6d04b1, type: 3}
       propertyPath: m_Name
       value: Pipe horizontal  (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 48d5908228a9e7442b869e861d6d04b1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -320,6 +336,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Pipe horizontal '
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 48d5908228a9e7442b869e861d6d04b1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -385,6 +405,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: de673417c6548e54da2168bfc310393a, type: 3}
       propertyPath: m_Name
       value: Panel (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: de673417c6548e54da2168bfc310393a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -452,6 +476,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: uP PIPE
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f72dfa7f73760b84eae61017d579ff96, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -518,6 +546,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: vent
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d4fcbac0420567d40abaccfb1268f8d9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -583,6 +615,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 6a54818d4db97284c815b4ef54445bee, type: 3}
       propertyPath: m_Name
       value: T-connector
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6a54818d4db97284c815b4ef54445bee, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -784,6 +820,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Panel
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: de673417c6548e54da2168bfc310393a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -849,6 +889,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b12ec7419bc90b64d8db3dfa4d817e3d, type: 3}
       propertyPath: m_Name
       value: 45ers corners
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b12ec7419bc90b64d8db3dfa4d817e3d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -916,6 +960,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Panel (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: de673417c6548e54da2168bfc310393a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -934,9 +982,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3446678760308100422}
     m_Modifications:
+    - target: {fileID: 1401451874522072879, guid: 7647dd5227e901f45bc48a0a13963b17, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022066223364533132, guid: 7647dd5227e901f45bc48a0a13963b17, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626805397944717048, guid: 7647dd5227e901f45bc48a0a13963b17, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8206372632902892318, guid: 7647dd5227e901f45bc48a0a13963b17, type: 3}
       propertyPath: m_Name
       value: Lamp horror
+      objectReference: {fileID: 0}
+    - target: {fileID: 8206372632902892318, guid: 7647dd5227e901f45bc48a0a13963b17, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8818718342325223560, guid: 7647dd5227e901f45bc48a0a13963b17, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 8838653754541187492, guid: 7647dd5227e901f45bc48a0a13963b17, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1040,6 +1108,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: vent (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d4fcbac0420567d40abaccfb1268f8d9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1105,6 +1177,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d4fcbac0420567d40abaccfb1268f8d9, type: 3}
       propertyPath: m_Name
       value: vent (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d4fcbac0420567d40abaccfb1268f8d9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1172,6 +1248,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: vent (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d4fcbac0420567d40abaccfb1268f8d9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1238,6 +1318,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: uP PIPE (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f72dfa7f73760b84eae61017d579ff96, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1256,9 +1340,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3446678760308100422}
     m_Modifications:
+    - target: {fileID: 1401451874522072879, guid: 7647dd5227e901f45bc48a0a13963b17, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022066223364533132, guid: 7647dd5227e901f45bc48a0a13963b17, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626805397944717048, guid: 7647dd5227e901f45bc48a0a13963b17, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8206372632902892318, guid: 7647dd5227e901f45bc48a0a13963b17, type: 3}
       propertyPath: m_Name
       value: Lamp horror (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8206372632902892318, guid: 7647dd5227e901f45bc48a0a13963b17, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8818718342325223560, guid: 7647dd5227e901f45bc48a0a13963b17, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 8838653754541187492, guid: 7647dd5227e901f45bc48a0a13963b17, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1318,9 +1422,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3446678760308100422}
     m_Modifications:
+    - target: {fileID: 1401451874522072879, guid: 7647dd5227e901f45bc48a0a13963b17, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022066223364533132, guid: 7647dd5227e901f45bc48a0a13963b17, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626805397944717048, guid: 7647dd5227e901f45bc48a0a13963b17, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8206372632902892318, guid: 7647dd5227e901f45bc48a0a13963b17, type: 3}
       propertyPath: m_Name
       value: Lamp horror (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8206372632902892318, guid: 7647dd5227e901f45bc48a0a13963b17, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8818718342325223560, guid: 7647dd5227e901f45bc48a0a13963b17, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 8838653754541187492, guid: 7647dd5227e901f45bc48a0a13963b17, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1427,6 +1551,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b12ec7419bc90b64d8db3dfa4d817e3d, type: 3}
       propertyPath: m_Name
       value: 45ers corners (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b12ec7419bc90b64d8db3dfa4d817e3d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

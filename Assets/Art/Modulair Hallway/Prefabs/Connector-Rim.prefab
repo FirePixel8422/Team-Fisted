@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Connector-Rim
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2c5f750c1af9b74bb29e315593d3f8a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
