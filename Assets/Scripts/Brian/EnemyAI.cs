@@ -251,13 +251,16 @@ public class EnemyAI : MonoBehaviour
 
     public void Venting()
     {
+        _components._agent.enabled = false;
         _components._goVentLoc = _components._ventLoc[UnityEngine.Random.Range(0, _components._ventLoc.Length)].transform.position;
 
         transform.position = _components._goVentLoc;
+        _components._agent.enabled = true;
 
         _components._agent.SetDestination(RandomNavmeshLocationLoc(transform.position, 20));
 
         _state = State.Wandering;
+
     }
 
     public Vector3 RandomNavmeshLocationLoc(Vector3 location,float radius)

@@ -11,7 +11,8 @@ public class LetterByLetter : MonoBehaviour
 
     //public Text textComponent; // For UI Text
     public TMP_Text textComponent; // For TextMesh Pro
-    public GameObject[] audioSource;
+    public AudioSource audioSource; // For AudioSource
+    public AudioClip audioClip; // For AudioClip
 
     private void Start()
     {
@@ -21,6 +22,8 @@ public class LetterByLetter : MonoBehaviour
 
     private IEnumerator TypeText()
     {
+        yield return new WaitForSeconds(2); // Wait to start
+
         foreach (char letter in fullText.ToCharArray())
         {
             PlaySound(); // Play audio when a new letter appear
@@ -32,6 +35,6 @@ public class LetterByLetter : MonoBehaviour
 
     public void PlaySound()
     {
-        Instantiate(audioSource[Random.Range(0, audioSource.Length)], transform);
+        audioSource.PlayOneShot(audioClip); // Play audioclip
     }
 }

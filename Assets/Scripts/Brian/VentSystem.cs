@@ -44,7 +44,7 @@ public class VentSystem : MonoBehaviour
         if (_ventObj.Length <= i)
         {
             Debug.LogWarning("END");
-            Suck(obj, 0);
+            Suck(obj, -1);
 
             return;
         }
