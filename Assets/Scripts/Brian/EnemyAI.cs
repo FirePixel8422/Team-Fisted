@@ -136,7 +136,7 @@ public class EnemyAI : MonoBehaviour
 
         if (_components._agent.remainingDistance < 1)
         {
-            _components._agent.SetDestination(RandomNavmeshLocationLoc(transform.position, 50));
+            _components._agent.SetDestination(RandomNavmeshLocationLoc(_components._target[0].transform.position, 100));
         }
     }
 
@@ -225,10 +225,14 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    public float _ventTime;
+
     public void Vent()
     {
         if (_components._goVentLoc == Vector3.zero)
         {
+            _ventTime = 0;
+
             _components._ventTime = UnityEngine.Random.Range(_components._ventDelayTime.x, _components._ventDelayTime.y);
 
             _components._goVentLoc = _components._ventLoc[UnityEngine.Random.Range(0, _components._ventLoc.Length)].transform.position;
@@ -236,7 +240,9 @@ public class EnemyAI : MonoBehaviour
             _components._agent.SetDestination(_components._goVentLoc);
         }
 
-        if(_components._agent.remainingDistance <= 0.1)
+        _ventTime += Time.deltaTime;
+
+        if (_components._agent.remainingDistance <= 0.1 || _ventTime > 20)
         {
             _state = State.Venting;
             Venting();
