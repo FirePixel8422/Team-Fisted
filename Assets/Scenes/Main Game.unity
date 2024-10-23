@@ -779,7 +779,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 2e5b8f627edded644bb10b286ae63927, type: 2}
   m_audioClip: {fileID: 8300000, guid: bdbd2089c3949ed4ca0f58f48c26ceb1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -40880,7 +40880,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 359276643}
-  breathSFX: {fileID: 65384575}
+  breathSFX: {fileID: 65384577}
+  heartbeat: {fileID: 1328216748}
+  lerpSpeed: 0.5
 --- !u!1 &1612134034 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4672785482223003765, guid: b216f88addf77fc43b12b2da537211a9, type: 3}
