@@ -4222,7 +4222,7 @@ MonoBehaviour:
     _ventTime: 0
     _gameLost: {fileID: 620652599}
     heartbeat: {fileID: 1328216748}
-    heartbeatSpeed: 0
+    heartbeatSpeed: 0.01
     heartbeatPitch: 0
   _swicthOn: 0
 --- !u!4 &359276648
@@ -24806,7 +24806,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
+    width: 2
     height: 1
 --- !u!222 &503783690
 CanvasRenderer:
@@ -38927,7 +38927,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
+    width: 2
     height: 1
 --- !u!222 &1519903547
 CanvasRenderer:
@@ -42385,7 +42385,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
+    width: 2
     height: 1
 --- !u!222 &1747098901
 CanvasRenderer:
