@@ -44,4 +44,18 @@ public class Flashlight : MonoBehaviour
             _light.enabled = true;
         }
     }
+
+    public float _maxDist;
+
+    private void Update()
+    {
+        RaycastHit hit;
+
+        if(Physics.Raycast(transform.position, transform.forward, out hit , 100))
+        {
+             _maxDist = hit.distance;
+        }
+
+        _light.intensity = _maxDist * 20;
+    }
 }
