@@ -9,6 +9,7 @@ public class VentStateSystem : MonoBehaviour
     Animator _animator;
     public GameObject smokePar;
     public RawImage rawImage;
+    public EnemyAI _enemy;
 
     bool _onn = false;
 
@@ -42,6 +43,9 @@ public class VentStateSystem : MonoBehaviour
             //SFX
             _audioSource.Play();
             rawImage.color = Color.green;
+
+            //go to vent sound when turning on
+            _enemy.HearSound(transform.position);
         }
     }
 
