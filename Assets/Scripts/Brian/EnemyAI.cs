@@ -56,6 +56,9 @@ public class EnemyAI : MonoBehaviour
         // Ro Heartbeat SFX
         public AudioSource heartbeat;
         public float heartbeatSpeed, heartbeatPitch;
+        // Ro Jumpscare on dead
+        public GameObject jumpscare;
+        public Camera camera;
     }
 
     private void Awake()
@@ -149,7 +152,7 @@ public class EnemyAI : MonoBehaviour
 
     public void GoToSound()
     {
-        _components._agent.SetDestination(_components._lastEnemyLoc);
+        _components._agent.SetDestination(_components._lastAudioLoc);
 
         if (_components._agent.remainingDistance <= 0)
         {
@@ -299,6 +302,8 @@ public class EnemyAI : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
+        Jumpscare();
+
         Debug.LogError("dead");
     }
     // Ro Nieuwe Coroutine om de normale enmey uit te zetten na 2 secondenn zodat de chase versie eerst volledig is gegroeit.
@@ -346,6 +351,12 @@ public class EnemyAI : MonoBehaviour
                 yield return null; // Wait for the next frame
             }
         }
+    }
+
+    private void Jumpscare()
+    {
+        Instantiate(_components.jumpscare, new Vector3(100,0,0), new Quaternion(0,0,0,0));
+        _components.camera.enabled = false;
     }
 
 }
