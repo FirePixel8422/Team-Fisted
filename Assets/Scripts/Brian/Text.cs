@@ -22,7 +22,7 @@ public class LetterByLetter : MonoBehaviour
 
     private IEnumerator TypeText()
     {
-        yield return new WaitForSeconds(2); // Wait to start
+        yield return new WaitForSeconds(.4f); // Wait to start
 
         foreach (char letter in fullText.ToCharArray())
         {

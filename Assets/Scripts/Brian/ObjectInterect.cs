@@ -8,7 +8,10 @@ public class ObjectInterect : MonoBehaviour
 
     private void Start()
     {
-        _interactUi = GetComponentInChildren<Canvas>().gameObject;
+        if (!_interactUi)
+        {
+            _interactUi = GetComponentInChildren<Canvas>().gameObject;
+        }
 
         _interactUi.SetActive(false);
 
