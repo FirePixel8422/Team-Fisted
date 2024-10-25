@@ -11,6 +11,8 @@ public class Flashlight : MonoBehaviour
 
     public Light _light;
 
+    public float intensityMultiplier;
+
     private void Awake()
     {
         _input = new Input();
@@ -56,6 +58,6 @@ public class Flashlight : MonoBehaviour
              _maxDist = hit.distance;
         }
 
-        _light.intensity = _maxDist * 20;
+        _light.intensity = _maxDist * intensityMultiplier;
     }
 }
