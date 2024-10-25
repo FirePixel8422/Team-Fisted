@@ -4,9 +4,13 @@ using UnityEngine.UIElements;
 
 public class Settings : MonoBehaviour
 {
+    public Movement _player;
+
     public void Close()
     {
         gameObject.SetActive(false);
+
+        _player.enabled = true;
     }
 
     public void Reset()
