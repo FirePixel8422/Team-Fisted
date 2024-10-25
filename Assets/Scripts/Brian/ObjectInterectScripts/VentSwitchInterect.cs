@@ -6,6 +6,10 @@ public class VentSwitchInterect : ObjectInterect
 {
     public VentStateSystem _vent;
     Animator _animator;
+    // red light turns green;
+    public Light light;
+    public GameObject lamp;
+    public Material greenmat;
 
     //SFX
     public AudioSource _audioSource;
@@ -21,6 +25,9 @@ public class VentSwitchInterect : ObjectInterect
 
         _animator.SetBool("Switch", true);
         _vent.TurnOnn();
+
+        light.color = Color.green;
+        lamp.GetComponent<Renderer>().material = greenmat;
 
         //SFX
         _audioSource.Play();

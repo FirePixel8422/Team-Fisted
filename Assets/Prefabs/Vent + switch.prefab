@@ -336,6 +336,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 376975461739977564, guid: 6d56496cb1d9f2f4ab026ac79bea290c, type: 3}
   m_PrefabInstance: {fileID: 7689371760679519452}
   m_PrefabAsset: {fileID: 0}
+--- !u!108 &8738948936970064993 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 1436887019293364413, guid: 6d56496cb1d9f2f4ab026ac79bea290c, type: 3}
+  m_PrefabInstance: {fileID: 7689371760679519452}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8039296488043507331
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -389,9 +394,17 @@ PrefabInstance:
       value: Vent Switch
       objectReference: {fileID: 0}
     - target: {fileID: 4784412904081815603, guid: fa72a9055db1e5c4caf1358b30f3f074, type: 3}
+      propertyPath: lamp
+      value: 
+      objectReference: {fileID: 7261697485901759802}
+    - target: {fileID: 4784412904081815603, guid: fa72a9055db1e5c4caf1358b30f3f074, type: 3}
       propertyPath: _vent
       value: 
       objectReference: {fileID: 4326595766501065409}
+    - target: {fileID: 4784412904081815603, guid: fa72a9055db1e5c4caf1358b30f3f074, type: 3}
+      propertyPath: light
+      value: 
+      objectReference: {fileID: 8738948936970064993}
     - target: {fileID: 4784412904081815603, guid: fa72a9055db1e5c4caf1358b30f3f074, type: 3}
       propertyPath: _audioSource
       value: 
