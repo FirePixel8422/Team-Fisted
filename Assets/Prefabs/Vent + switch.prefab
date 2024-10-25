@@ -306,8 +306,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1040500306082562534, guid: 6d56496cb1d9f2f4ab026ac79bea290c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4916275891416881547}
   m_SourcePrefab: {fileID: 100100000, guid: 6d56496cb1d9f2f4ab026ac79bea290c, type: 3}
+--- !u!1 &7261697485901759802 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1040500306082562534, guid: 6d56496cb1d9f2f4ab026ac79bea290c, type: 3}
+  m_PrefabInstance: {fileID: 7689371760679519452}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4916275891416881547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7261697485901759802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 641e940e7579e354db6d7b4b1cda150a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minStrength: 0
+  maxStrength: 0
+  pulseSpeed: 0
 --- !u!4 &8038199447587774336 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 376975461739977564, guid: 6d56496cb1d9f2f4ab026ac79bea290c, type: 3}
@@ -373,6 +396,26 @@ PrefabInstance:
       propertyPath: _audioSource
       value: 
       objectReference: {fileID: 1462223561499347697}
+    - target: {fileID: 8568761676159845237, guid: fa72a9055db1e5c4caf1358b30f3f074, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8568761676159845237, guid: fa72a9055db1e5c4caf1358b30f3f074, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8568761676159845237, guid: fa72a9055db1e5c4caf1358b30f3f074, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8568761676159845237, guid: fa72a9055db1e5c4caf1358b30f3f074, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8568761676159845237, guid: fa72a9055db1e5c4caf1358b30f3f074, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
