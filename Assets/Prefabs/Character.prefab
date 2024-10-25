@@ -7096,6 +7096,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _light: {fileID: 2105923986743086918}
+  intensityMultiplier: 10
   _maxDist: 0
 --- !u!1 &5645784379589887115
 GameObject:
