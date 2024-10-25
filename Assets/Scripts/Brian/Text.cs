@@ -14,16 +14,15 @@ public class LetterByLetter : MonoBehaviour
     public AudioSource audioSource; // For AudioSource
     public AudioClip audioClip; // For AudioClip
 
-    private void Start()
+    private void OnEnable()
     {
-        //textComponent = GetComponent<TMP_Text>(); // For TextMesh Pro
+        currentText = "";
+
         StartCoroutine(TypeText());
     }
 
     private IEnumerator TypeText()
     {
-        yield return new WaitForSeconds(.4f); // Wait to start
-
         foreach (char letter in fullText.ToCharArray())
         {
             PlaySound(); // Play audio when a new letter appear
