@@ -11,6 +11,8 @@ public class Settings : MonoBehaviour
         gameObject.SetActive(false);
 
         _player.enabled = true;
+
+        _player.GetComponent<IngameUi>()._sfxMixer.SetFloat("Volume", Mathf.Log10(_player.GetComponent<IngameUi>()._sfxSlider.value) * 20);
     }
 
     public void Reset()
