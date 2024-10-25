@@ -147,10 +147,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3c06556045e0d4eabaa81413ebfc79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typingSpeed: 0.06
-  fullText: To turn on a vent you flick the switch with a red light above it. If
-    you do this correctly the light will turn to green. But watch out the creature
-    is attracted by the sound of the vent and will hunt you.
+  typingSpeed: 0.035
+  fullText: To turn on a vent, flick the switch with a red light above it. If you
+    do this correctly the light will turn to green. But watch out the creature is
+    attracted by the sound of the vent and will hunt you.
   textComponent: {fileID: 7527542459376440924}
   audioSource: {fileID: 5504692919714811657}
   audioClip: {fileID: 8300000, guid: 2008c0904840d7b48bbe36c546ec55fc, type: 3}
@@ -591,7 +591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3c06556045e0d4eabaa81413ebfc79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typingSpeed: 0.06
+  typingSpeed: 0.035
   fullText: On the TV-screens on your right you can find a map lay-out with vent
     symbol. Here you can keep track of which vents you have turned on and which ones
     you are still missing.
@@ -731,9 +731,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
+      - m_Target: {fileID: 1391950871428363948}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -890,7 +890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3c06556045e0d4eabaa81413ebfc79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typingSpeed: 0.06
+  typingSpeed: 0.035
   fullText: Welcome to the tutorial. Click to skip to the next page.
   textComponent: {fileID: 1465566380325130640}
   audioSource: {fileID: 5504692919714811657}
@@ -1126,7 +1126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3c06556045e0d4eabaa81413ebfc79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typingSpeed: 0.06
+  typingSpeed: 0.035
   fullText: There is a creature in the spaceship hunting you. This room is the only
     space where you are safe.
   textComponent: {fileID: 4896661022775806907}
@@ -1279,8 +1279,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3c06556045e0d4eabaa81413ebfc79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typingSpeed: 0.06
-  fullText: Good luck!
+  typingSpeed: 0.035
+  fullText: Trap the creature. Don't get caught. SURVIVE
   textComponent: {fileID: 6139058456255304055}
   audioSource: {fileID: 5504692919714811657}
   audioClip: {fileID: 8300000, guid: 2008c0904840d7b48bbe36c546ec55fc, type: 3}
@@ -1431,9 +1431,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3c06556045e0d4eabaa81413ebfc79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typingSpeed: 0.06
-  fullText: You  can also see some camera's on the TV-screens. These will give you
-    a live view of your surroundings and where the creature might be wandering around.
+  typingSpeed: 0.035
+  fullText: You can also see some cameras on the TV-screens. You can enter the camera
+    view by looking at the keyboard to your right and interacting with it. This will
+    give you a live view of your surroundings and where the creature might be wandering
+    around.
   textComponent: {fileID: 4349452488157657534}
   audioSource: {fileID: 5504692919714811657}
   audioClip: {fileID: 8300000, guid: 2008c0904840d7b48bbe36c546ec55fc, type: 3}
@@ -1713,9 +1715,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3c06556045e0d4eabaa81413ebfc79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typingSpeed: 0.06
-  fullText: Your goal is to turn all the switching to green to trap the creature
-    in the ventsystem.
+  typingSpeed: 0.035
+  fullText: Your goal is to turn all the switches to green to trap the creature in
+    the vent system.
   textComponent: {fileID: 1083249357678730500}
   audioSource: {fileID: 5504692919714811657}
   audioClip: {fileID: 8300000, guid: 2008c0904840d7b48bbe36c546ec55fc, type: 3}
@@ -2287,9 +2289,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
+      - m_Target: {fileID: 1517503025187207225}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2693,7 +2695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3c06556045e0d4eabaa81413ebfc79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typingSpeed: 0.06
+  typingSpeed: 0.035
   fullText: 'The creature can teleport using the vents that have a red light next
     to them. '
   textComponent: {fileID: 3335497444118804006}
@@ -2991,7 +2993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3c06556045e0d4eabaa81413ebfc79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typingSpeed: 0.06
+  typingSpeed: 0.035
   fullText: When the lights start to flicker that means the creature is nearby.
   textComponent: {fileID: 6346382906334566601}
   audioSource: {fileID: 5504692919714811657}
