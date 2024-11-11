@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[System.Obsolete]
 public class LightToEnemy : MonoBehaviour
 {
     public float _lightDistence;
@@ -20,12 +22,12 @@ public class LightToEnemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(Vector3.Distance(transform.position, _enemy.transform.position) < _lightDistence)
+        if (Vector3.Distance(transform.position, _enemy.transform.position) < _lightDistence)
         {
             _lightFlicking = true;
         }
 
-        else if(_lightFlicking == true)
+        else if (_lightFlicking == true)
         {
             _lightFlicking = false;
         }

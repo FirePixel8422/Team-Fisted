@@ -9,6 +9,8 @@ public class LetterByLetter : MonoBehaviour
     public string fullText; // The full text to display
     private string currentText = ""; // The text currently displayed
 
+    public float minPitch, maxPitch;
+
     //public Text textComponent; // For UI Text
     public TMP_Text textComponent; // For TextMesh Pro
     public AudioSource audioSource; // For AudioSource
@@ -23,17 +25,28 @@ public class LetterByLetter : MonoBehaviour
 
     private IEnumerator TypeText()
     {
+        float elapsed = 0;
+
         foreach (char letter in fullText.ToCharArray())
         {
             PlaySound(); // Play audio when a new letter appear
             currentText += letter; // Append each letter
             textComponent.text = currentText; // Update the text component
-            yield return new WaitForSeconds(typingSpeed); // Wait for the specified time
+
+
+            while (elapsed < typingSpeed)
+            {
+                yield return null;
+
+                elapsed += Time.deltaTime;
+            }
+            elapsed -= typingSpeed;
         }
     }
 
     public void PlaySound()
     {
+        audioSource.pitch = Random.Range(minPitch, maxPitch);
         audioSource.PlayOneShot(audioClip); // Play audioclip
     }
 }

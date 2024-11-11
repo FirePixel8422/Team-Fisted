@@ -1,155 +1,150 @@
-using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
+
 
 public class Movement : MonoBehaviour
 {
-    Input _input;
+    public static Movement Instance;
 
-    InputAction _move;
-    InputAction _rotate;
-    InputAction _sprint;
 
-    public float _moveSpeed;
 
-    public float _maxStamina;
-    float _stamina;
+    public float walkSpeed;
+    [HideInInspector]
+    public float moveSpeed;
+    public float sprintSpeed;
+    public float accelSpeed;
 
-    public float _rotationSpeed;
+    public bool sprinting;
 
-    public Components _components = new Components();
+    private float maxStamina;
+    public float stamina;
 
-    [Serializable]
-    public class Components
-    {
-        public Camera _camera;
-        public Rigidbody _rb;
-        public Animator _animation;
-    }
+    public float staminaTime;
+    public float staminaRegenSpeed;
 
-    float _x, _y;
+
+    public float rotationSpeed;
+
+
+    private Vector2 mouse;
+
+    public Camera camera;
+    public Rigidbody rb;
+
 
     private void Awake()
     {
-        _input = new Input();
+        Instance = this;
 
-        _stamina = _maxStamina;
+        maxStamina = stamina;
+
+        moveSpeed = walkSpeed;
     }
 
     private void OnEnable()
     {
-        _input.Enable();
-
-        _move = _input.Movement.Move;
-        _rotate = _input.Movement.Rotate;
-        _sprint = _input.Movement.Sprint;
-
-        _sprint.started += Sprint;
-        _sprint.canceled += Sprint;
-
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        
     }
 
     private void OnDisable()
     {
-        _input.Disable();
-
-        _move = null;
-        _rotate = null;
-        _sprint = null;
-
         Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
     }
 
     private void Update()
     {
-        Move(_move.ReadValue<Vector2>());
-        Rotate(_rotate.ReadValue<Vector2>());
+        Vector2 moveDir = new Vector2(UnityEngine.Input.GetAxisRaw("Horizontal"), UnityEngine.Input.GetAxisRaw("Vertical"));
+        Vector2 mousemovement = new Vector2(UnityEngine.Input.GetAxisRaw("Mouse X"), UnityEngine.Input.GetAxisRaw("Mouse Y"));
+
+
+        Move(moveDir);
+
+        if (mousemovement != Vector2.zero)
+        {
+            Rotate(mousemovement);
+        }
+        if (UnityEngine.Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            ChangeSprintState(true);
+        }
+        else if (UnityEngine.Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            ChangeSprintState(false);
+        }
     }
 
-    public void Move(Vector2 context)
+    public void Move(Vector2 moveDir)
     {
-        if (context != Vector2.zero)
+        Vector3 moveDirection = transform.forward * moveDir.y + transform.right * moveDir.x;
+        moveDirection = new Vector3(moveDirection.x, 0, moveDirection.z);
+
+        rb.velocity = moveDirection * moveSpeed;
+
+        if(moveDir != Vector2.zero && sprinting)
         {
-            _components._animation.SetBool("123", true);
-        }
-
-        else
-        {
-            _components._animation.SetBool("123", false);
-        }
-
-        Vector3 _moveDirection = (transform.forward * context.y + transform.right * context.x) * Time.deltaTime;
-        _moveDirection = new Vector3(_moveDirection.x, 0, _moveDirection.z);
-
-        _components._rb.AddForce(_moveDirection * 3000);
-
-        if(_moveSpeed > 11)
-        {
-            if (_stamina <= 0)
+            if (stamina <= 0)
             {
-                _moveSpeed = speedSave;
-                _components._animation.speed = 1;
+                ChangeSprintState(false);
             }
 
             else
             {
-                _stamina -= Time.deltaTime;
+                stamina -= Time.deltaTime * (maxStamina / staminaTime);
             }
         }
-
-        else if(_stamina < _maxStamina)
+        else if (stamina < maxStamina)
         {
-            _stamina += Time.deltaTime;
-        }
-
-        SpeedControle();
-    }
-
-    public void SpeedControle()
-    {
-        Vector3 _speed = new Vector3(_components._rb.velocity.x, 0, _components._rb.velocity.z);
-
-        if (_speed.magnitude > _moveSpeed)
-        {
-            Vector3 _speedLimited = _speed.normalized * _moveSpeed;
-            _components._rb.velocity = new Vector3(_speedLimited.x, _components._rb.velocity.y, _speedLimited.z);
+            stamina += Time.deltaTime * staminaRegenSpeed;
         }
     }
 
-    public void Rotate(Vector2 context)
+    public void SpeedControl()
     {
-        float _xB = context.x * _rotationSpeed;
-        float _yB = context.y * _rotationSpeed;
+        Vector3 speed = new Vector3(rb.velocity.x, 0, rb.velocity.z);
 
-        _x += _xB;
-        _y -= _yB;
-
-        _y = Math.Clamp(_y, -85, 85);
-
-        transform.localRotation = Quaternion.Euler(0, _x, 0);
-        _components._camera.transform.localRotation = Quaternion.Euler(_y, 0, 0);
+        if (speed.magnitude > moveSpeed)
+        {
+            Vector3 speedLimited = speed.normalized * moveSpeed;
+            rb.velocity = new Vector3(speedLimited.x, rb.velocity.y, speedLimited.z);
+        }
     }
 
-    float speedSave;
-
-    public void Sprint(InputAction.CallbackContext context)
+    public void Rotate(Vector2 mouseMovement)
     {
+        float xB = mouseMovement.x * rotationSpeed;
+        float yB = mouseMovement.y * rotationSpeed;
 
-        if (context.started)
+        float x = xB + mouse.x;
+        float y = -yB + mouse.y;
+
+        y = Mathf.Clamp(y, -85, 85);
+
+        mouse.x = x;
+        mouse.y = y;
+
+        transform.localRotation = Quaternion.Euler(0, x, 0);
+        camera.transform.localRotation = Quaternion.Euler(y, 0, 0);
+    }
+
+
+
+    public void ChangeSprintState(bool state)
+    {
+        if (state == sprinting)
         {
-            speedSave = _moveSpeed;
-            _moveSpeed = _moveSpeed * 1.2f;
-
-            _components._animation.speed = 1 * 1.3f;
+            return;
         }
 
-        if (context.canceled)
+        sprinting = state;
+
+
+        if (sprinting)
         {
-            _moveSpeed = speedSave;
-            _components._animation.speed = 1;
+            moveSpeed = sprintSpeed;
+        }
+        else
+        {
+            moveSpeed = walkSpeed;
         }
     }
 }

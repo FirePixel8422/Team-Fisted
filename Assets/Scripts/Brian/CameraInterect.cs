@@ -21,7 +21,7 @@ public class CameraInterect : ObjectInterect
             _player.enabled = false;
 
             Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            
         }
 
         else
@@ -38,6 +38,5 @@ public class CameraInterect : ObjectInterect
         _player.enabled = true;
 
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 }

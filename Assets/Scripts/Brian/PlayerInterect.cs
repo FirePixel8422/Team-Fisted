@@ -45,7 +45,7 @@ public class PlayerInterect : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(GetComponent<Movement>()._components._camera.transform.position, GetComponent<Movement>()._components._camera.transform.forward, out hit, 10, _interectLayer))
+        if (Physics.Raycast(GetComponent<Movement>().camera.transform.position, GetComponent<Movement>().camera.transform.forward, out hit, 10, _interectLayer))
         {
             _lasthit = hit.transform.gameObject.GetComponent<ObjectInterect>();
             _lasthit._interactUi.SetActive(true);
@@ -62,7 +62,7 @@ public class PlayerInterect : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(GetComponent<Movement>()._components._camera.transform.position, GetComponent<Movement>()._components._camera.transform.forward, out hit, 10, _interectLayer))
+        if (Physics.Raycast(GetComponent<Movement>().camera.transform.position, GetComponent<Movement>().camera.transform.forward, out hit, 10, _interectLayer))
         { 
             Debug.Log("Interect");
             Debug.Log(hit.transform.name);

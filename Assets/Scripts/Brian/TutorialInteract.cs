@@ -15,7 +15,7 @@ public class TutorialInteract : ObjectInterect
             _player.enabled = false;
 
             Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            
 
             _ui.SetActive(true);
         }

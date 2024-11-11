@@ -1,26 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
 
-public class CameraFPS : MonoBehaviour
-{
-    public float _FPS;
 
-    Camera _cam;
+//public class CameraFPS : MonoBehaviour
+//{
+//    public float _FPS;
 
-    private void Start()
-    {
-        _cam = GetComponent<Camera>();
+//    Camera _cam;
 
-        StartCoroutine(FPSTimer());
-    }
+//    private void Start()
+//    {
+//        _cam = GetComponent<Camera>();
 
-    IEnumerator FPSTimer()
-    {
-        _cam.enabled = false;
-        yield return new WaitForSeconds(60 / _FPS / 2);
-        _cam.enabled = true;
-        yield return new WaitForSeconds(60 / _FPS / 2);
-        StartCoroutine(FPSTimer());
-    }
-}
+//        StartCoroutine(FPSTimer());
+//    }
+
+
+//    private IEnumerator FPSTimer()
+//    {
+//        _cam.enabled = false;
+//        yield return new WaitForSeconds(60 / _FPS / 2);
+//        _cam.enabled = true;
+//        yield return new WaitForSeconds(60 / _FPS / 2);
+//        StartCoroutine(FPSTimer());
+//    }
+//}

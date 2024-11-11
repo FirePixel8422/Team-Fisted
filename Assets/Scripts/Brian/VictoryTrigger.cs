@@ -15,6 +15,6 @@ public class VictoryTrigger : MonoBehaviour
         _player.enabled = false;
 
         Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        
     }
 }

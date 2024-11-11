@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Runtime.CompilerServices;
 
 public enum State
 {
@@ -19,6 +20,10 @@ public enum State
 
 public class EnemyAI : MonoBehaviour
 {
+    public static EnemyAI Instance;
+    
+
+
     public State _state;
 
     [Header("")]
@@ -56,11 +61,12 @@ public class EnemyAI : MonoBehaviour
 
         // Ro Jumpscare on dead
         public GameObject jumpscare;
-        public Camera camera;
     }
 
     private void Awake()
     {
+        Instance = this;
+
         _components._agent.enabled = false;
         transform.position = _components._spawnLoc[UnityEngine.Random.Range(0, _components._spawnLoc.Length)].transform.position;
         _components._agent.enabled = true;
@@ -238,8 +244,6 @@ public class EnemyAI : MonoBehaviour
             _components._agent.SetDestination(_components._goVentLoc);
         }
 
-        Debug.LogError("vent");
-
         _ventTimeStuck += Time.deltaTime;
 
         if (_components._agent.remainingDistance <= 0.1 || _ventTimeStuck > 30)
@@ -298,7 +302,7 @@ public class EnemyAI : MonoBehaviour
         _components._target[0].GetComponent<Movement>().enabled = false;
 
         Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        
 
         Jumpscare();
 
@@ -315,8 +319,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Jumpscare()
     {
-        Instantiate(_components.jumpscare, new Vector3(100,0,0), new Quaternion(0,0,0,0));
-        _components.camera.enabled = false;
+        Instantiate(_components.jumpscare, new Vector3(100,0,0), Quaternion.identity);
     }
 
 }
