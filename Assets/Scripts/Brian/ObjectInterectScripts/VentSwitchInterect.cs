@@ -21,7 +21,7 @@ public class VentSwitchInterect : ObjectInterect
 
     public override void Interect()
     {
-        Debug.LogWarning("Switch Vent");
+        //Debug.LogWarning("Switch Vent");
 
         _animator.SetBool("Switch", true);
         _vent.TurnOnn();

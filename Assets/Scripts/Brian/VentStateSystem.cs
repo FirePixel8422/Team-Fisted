@@ -68,7 +68,7 @@ public class VentStateSystem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.LogWarning(other.name + " enter vent trigger");
+        //Debug.LogWarning(other.name + " enter vent trigger");
 
         if (_ventSystem._ventState[_index] == VentState.Suck)
         {

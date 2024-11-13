@@ -17,7 +17,7 @@ public class InterectDoor : ObjectInterect
         if (_open == false)
         {
             _open = true;
-            Debug.LogWarning("Open Door");
+            //Debug.LogWarning("Open Door");
 
             _animatorL.SetBool("Open", true);
             _animatorR.SetBool("Open", true);

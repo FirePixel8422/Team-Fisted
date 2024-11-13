@@ -35,12 +35,12 @@ public class IngameUi : MonoBehaviour
         _movement = GetComponent<Movement>();
         
         //SFX shit
-        if (PlayerPrefs.GetFloat("SFX Volume") != null)
+        if (PlayerPrefs.GetFloat("SFX Volume") != 0)
         {
             _sfxMixer.SetFloat("Volume", Mathf.Log10(PlayerPrefs.GetFloat("SFX Volume")) * 20);
             _sfxSlider.value = PlayerPrefs.GetFloat("SFX Volume");
         }
-        if (PlayerPrefs.GetFloat("Music Volume") != null)
+        if (PlayerPrefs.GetFloat("Music Volume") != 0)
         {
             _musicMixer.SetFloat("Volume", Mathf.Log10(PlayerPrefs.GetFloat("Music Volume")) * 20);
             _musicSlider.value = PlayerPrefs.GetFloat("Music Volume");

@@ -306,7 +306,7 @@ public class EnemyAI : MonoBehaviour
 
         Jumpscare();
 
-        Debug.LogError("dead");
+        //Debug.LogError("dead");
     }
     // Ro Nieuwe Coroutine om de normale enmey uit te zetten na 2 secondenn zodat de chase versie eerst volledig is gegroeit.
     private IEnumerator DeactivateIdle(float delay)

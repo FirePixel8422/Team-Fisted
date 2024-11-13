@@ -64,8 +64,8 @@ public class PlayerInterect : MonoBehaviour
 
         if (Physics.Raycast(GetComponent<Movement>().camera.transform.position, GetComponent<Movement>().camera.transform.forward, out hit, 10, _interectLayer))
         { 
-            Debug.Log("Interect");
-            Debug.Log(hit.transform.name);
+            //Debug.Log("Interect");
+            //Debug.Log(hit.transform.name);
         
             if (hit.transform.GetComponent<ObjectInterect>())
             {

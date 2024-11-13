@@ -4,7 +4,6 @@ using UnityEngine;
 using Unity.Mathematics;
 using Unity.Burst;
 using System;
-using System.Threading;
 
 
 [BurstCompile]
@@ -16,11 +15,16 @@ public class LightManager : MonoBehaviour
     public float updateInterval;
 
     [Header("Monster Close Light Flicker")]
-    public int minFlickerTime, maxFlickerTime;
+    public int minFlickerTime;
+    public int maxFlickerTime;
+
+
+    [Header("\nSpecial Events")]
+    public float eventChanceInterval;
+
 
     [Header("Blood Lights Event")]
     public float bloodLightsChance;
-    public float bl_UpdateInterval;
     public float bl_MinDuration, bl_MaxDuration;
     public Color lightColor, bloodLightColor;
     public float bl_addedIntensity;
@@ -28,6 +32,12 @@ public class LightManager : MonoBehaviour
 
     private bool bloodLightsActive;
     private bool bloodLightsEnding;
+
+    [Header("Destroy Lights Event")]
+    public float destroyLightsChance;
+
+    private bool destroyLightsActive;
+    private bool destroyLightsEnding;
 
 
     [Header("Debug Data")]
@@ -42,7 +52,10 @@ public class LightManager : MonoBehaviour
     private Transform enemy;
     private Transform player;
 
+
     private Unity.Mathematics.Random random;
+
+    private WaitForSeconds updateDelay;
 
 
 
@@ -54,6 +67,8 @@ public class LightManager : MonoBehaviour
         player = Movement.Instance.transform;
 
         random = new Unity.Mathematics.Random((uint)DateTime.Now.Ticks);
+
+        updateDelay = new WaitForSeconds(updateInterval);
 
 
         Light[] _lights = transform.root.GetComponentsInChildren<Light>(true);
@@ -93,37 +108,46 @@ public class LightManager : MonoBehaviour
     [BurstCompile]
     private IEnumerator UpdateLightsTickLoop()
     {
-        WaitForSeconds wait = new WaitForSeconds(updateInterval);
-
-        float time;
+        float elapsed = 0;
 
         while (true)
         {
-            yield return wait;
+            yield return updateDelay;
 
-            time = Time.time;
+            UpdateLights(Time.time);
 
-            UpdateLights(time);
 
-            if (bloodLightsActive == false && random.NextFloat(0, 100) <= bloodLightsChance)
+
+            elapsed += updateInterval;
+
+            if (elapsed >= eventChanceInterval)
             {
-                bloodLightsActive = true;
-                StartCoroutine(BloodLights());
+                elapsed = 0;
+
+                if (bloodLightsActive == false && random.NextFloat(0, 100) <= bloodLightsChance)
+                {
+                    bloodLightsActive = true;
+                    StartCoroutine(BloodLights());
+                }
+
+                //if (destroyLightsActive == false && random.NextFloat(0, 100) <= destroyLightsChance)
+                //{
+                //    destroyLightsActive = true;
+                //    StartCoroutine(DestroyLights());
+                //}
             }
         }
     }
 
 
 
-    public float totalElapsedTime = 0;
 
     [BurstCompile]
     private IEnumerator BloodLights()
     {
-        WaitForSeconds wait = new WaitForSeconds(bl_UpdateInterval);
+        float startTime = Time.time;
 
-        float time = Time.time;
-        float startTime = time;
+        float totalElapsedTime = 0;
         float elapsedTime;
 
 
@@ -131,7 +155,7 @@ public class LightManager : MonoBehaviour
 
         while (true)
         {
-            yield return wait;
+            yield return updateDelay;
 
             //save previous totalElapsedTime
             elapsedTime = totalElapsedTime;
@@ -153,6 +177,17 @@ public class LightManager : MonoBehaviour
                 bloodLightsEnding = false;
                 yield break;
             }
+        }
+    }
+
+
+    [BurstCompile]
+    private IEnumerator DestroyLights()
+    {
+        while (true)
+        {
+            yield return updateDelay;
+
         }
     }
 
@@ -252,9 +287,9 @@ public class LightManager : MonoBehaviour
                 }
 
                 if (isBloodlight[i] == true || bloodLightsEnding == true)
-                { 
+                {
                     lights[i].color = lightColor;
-                     
+
                     lights[i].intensity = lightIntensity[i];
 
                     isBloodlight[i] = false;
