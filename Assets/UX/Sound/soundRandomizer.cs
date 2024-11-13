@@ -138,19 +138,19 @@ public class soundRandomizer : MonoBehaviour
         //Check if enemy is in CHASE MODE
         if (enemy.GetComponent<EnemyAI>()._state == State.chase && chaseStateOn)
         {
-            Debug.LogWarning("ChaseMode");
+            //Debug.LogWarning("ChaseMode");
             stated = Stated.Chase;
         }       
     }  
     
     public IEnumerator Normal()
     {
-        Debug.LogWarning("Normal Mode");
+        //Debug.LogWarning("Normal Mode");
         yield return new WaitForSeconds(soundCooldown);
 
         if (soundCooldown <= timer)
         {
-            Debug.LogWarning("Sound Play");
+            //Debug.LogWarning("Sound Play");
             timer = 0;
             currentAudioClip = audioClip[randomNumber];
             source.clip = currentAudioClip;
@@ -163,12 +163,12 @@ public class soundRandomizer : MonoBehaviour
 
     public IEnumerator Chase()
     {
-        Debug.LogWarning("Chase Mode");
+        //Debug.LogWarning("Chase Mode");
         yield return new WaitForSeconds(soundCooldown);
 
         if (soundCooldown <= timer)
         {
-            Debug.LogWarning("Sound Play");
+            //Debug.LogWarning("Sound Play");
             timer = 0;
             currentAudioClip = audioClip[randomNumber];
             source.clip = currentAudioClip;
@@ -182,14 +182,14 @@ public class soundRandomizer : MonoBehaviour
     }
     public IEnumerator Walk()
     {
-        Debug.LogWarning("Walk Mode");
+        //Debug.LogWarning("Walk Mode");
         yield return new WaitForSeconds(soundCooldown);
 
         if (_moveDirection != Vector2.zero)
         {
             if (soundCooldown <= timer)
             {
-                Debug.LogWarning("Sound Play");
+                //Debug.LogWarning("Sound Play");
                 timer = 0;
                 currentAudioClip = audioClip[randomNumber];
                 source.clip = currentAudioClip;
@@ -202,14 +202,14 @@ public class soundRandomizer : MonoBehaviour
     }
     public IEnumerator Sprint()
     {
-        Debug.LogWarning("Sprint Mode");
+        //Debug.LogWarning("Sprint Mode");
         yield return new WaitForSeconds(soundCooldown);
 
         if (_moveDirection != Vector2.zero)
         {
             if (soundCooldown <= timer)
             {
-                Debug.LogWarning("Sound Play");
+                //Debug.LogWarning("Sound Play");
                 timer = 0;
                 currentAudioClip = audioClip[randomNumber];
                 source.clip = currentAudioClip;

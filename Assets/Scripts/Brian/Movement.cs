@@ -43,7 +43,7 @@ public class Movement : MonoBehaviour
     private void OnEnable()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        
+        Cursor.visible = true;
     }
 
     private void OnDisable()

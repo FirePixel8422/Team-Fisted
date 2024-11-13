@@ -50,16 +50,13 @@ public class LightManager : MonoBehaviour
     [BurstCompile]
     private void Start()
     {
-        transform.parent = null;
-        DontDestroyOnLoad(gameObject);
-
         enemy = EnemyAI.Instance.transform;
         player = Movement.Instance.transform;
 
         random = new Unity.Mathematics.Random((uint)DateTime.Now.Ticks);
 
 
-        Light[] _lights = FindObjectsOfType<Light>(true);
+        Light[] _lights = transform.root.GetComponentsInChildren<Light>(true);
 
         lights = new Light[_lights.Length - 1];
         lightPos = new Vector3[_lights.Length - 1];
@@ -87,6 +84,9 @@ public class LightManager : MonoBehaviour
         }
 
         StartCoroutine(UpdateLightsTickLoop());
+
+        transform.parent = null;
+        DontDestroyOnLoad(gameObject);
     }
 
 
@@ -242,6 +242,22 @@ public class LightManager : MonoBehaviour
                     {
                         isBloodlight[i] = true;
                     }
+                }
+            }
+            else
+            {
+                if (lights[i] == null)
+                {
+                    Debug.LogError("LIGHT IS NULL");
+                }
+
+                if (isBloodlight[i] == true || bloodLightsEnding == true)
+                { 
+                    lights[i].color = lightColor;
+                     
+                    lights[i].intensity = lightIntensity[i];
+
+                    isBloodlight[i] = false;
                 }
             }
         }
