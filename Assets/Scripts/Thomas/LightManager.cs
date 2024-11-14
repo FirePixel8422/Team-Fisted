@@ -4,7 +4,6 @@ using UnityEngine;
 using Unity.Mathematics;
 using Unity.Burst;
 using System;
-using Unity.VisualScripting;
 
 
 [BurstCompile]
@@ -251,8 +250,10 @@ public class LightManager : MonoBehaviour
             }
             else
             {
+                bool lightInEnemyRange = (lightPos[i] - enemyPos).sqrMagnitude < flickerDistanceSqr;
+
                 //if light is in range of enemy
-                if ((lightPos[i] - enemyPos).sqrMagnitude < flickerDistanceSqr)
+                if (lightInEnemyRange)
                 {
                     //if flickering is false
                     if (timeToFlicker[i] == 0)
@@ -271,10 +272,10 @@ public class LightManager : MonoBehaviour
                 {
                     lights[i].gameObject.SetActive(true);
                     lightsActive[i] = true;
-                }
 
-                //set flickering to false
-                timeToFlicker[i] = 0;
+                    //set flickering to false
+                    timeToFlicker[i] = 0;
+                }
             }
         }
     }

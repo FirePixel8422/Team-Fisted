@@ -17,6 +17,8 @@ public class Monitor : MonoBehaviour
 
 
     public Camera monitorCamera;
+    public AudioSource staticSound;
+    private float staticSoundClipLength;
 
     public CameraController[] gameCameras;
 
@@ -31,6 +33,9 @@ public class Monitor : MonoBehaviour
     public Animator monitorLogoAnim;
     public float monitorLogoShowTime;
 
+    public Transform mapCamHolder;
+    public Animator mapAnim;
+
     public bool resetCameraIndexAtRestart;
 
 
@@ -41,11 +46,18 @@ public class Monitor : MonoBehaviour
 
     public GameObject TEMPGAMEOBJECTMONITOR;
 
+    private Coroutine openMonitorCO;
+    private Unity.Mathematics.Random random;
+
 
 
     private void Start()
     {
         gameCameras = FindObjectsOfType<CameraController>();
+
+        staticSoundClipLength = staticSound.clip.length;
+
+        random = new Unity.Mathematics.Random((uint)System.DateTime.Now.Ticks);
     }
 
 
@@ -56,22 +68,37 @@ public class Monitor : MonoBehaviour
             if (monitorActive == false)
             {
                 monitorActive = true;
-                StartCoroutine(EnableMonitor());
+                openMonitorCO = StartCoroutine(EnableMonitor());
             }
             else
             {
                 monitorActive = false;
+
+                if (openMonitorCO != null)
+                {
+                    StopCoroutine(openMonitorCO);
+                }
                 DisableMonitor();
             }
         }
 
 
-        if (monitorActive && (UnityEngine.Input.GetMouseButtonDown(0) || UnityEngine.Input.GetKeyDown(KeyCode.P)))
+        if (monitorActive && isSwappingCamera == false)
         {
-            if (isSwappingCamera == false)
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Q))
             {
                 isSwappingCamera = true;
-                StartCoroutine(ChangeCamera());
+                StartCoroutine(ChangeCamera(-1));
+            }
+            else if (UnityEngine.Input.GetKeyDown(KeyCode.E))
+            {
+                isSwappingCamera = true;
+                StartCoroutine(ChangeCamera(1));
+            }
+            else if (UnityEngine.Input.GetKeyDown(KeyCode.W))
+            {
+                isSwappingCamera = true;
+                StartCoroutine(ChangeCameraToMap());
             }
         }
     }
@@ -90,7 +117,7 @@ public class Monitor : MonoBehaviour
 
         yield return new WaitForSeconds(monitorLogoShowTime);
 
-        StartCoroutine(ChangeCamera());
+        StartCoroutine(ChangeCamera(0));
     }
 
     public void DisableMonitor()
@@ -111,24 +138,56 @@ public class Monitor : MonoBehaviour
     }
 
 
-    private IEnumerator ChangeCamera()
+
+
+    private IEnumerator ChangeCamera(int change)
     {
-        selectedCameraIndex += 1;
+        selectedCameraIndex += change;
 
         if (selectedCameraIndex == gameCameras.Length)
         {
             selectedCameraIndex = 0;
         }
+        else if (selectedCameraIndex == -1)
+        {
+            selectedCameraIndex = gameCameras.Length - 1;
+        }
+
 
         LightManager.Instance.UpdateActiveCamera(gameCameras[selectedCameraIndex].transform.position);
 
-
-        monitorCamera.transform.SetParent(staticScreenCamHolder, false, false);
-
-        yield return new WaitForSeconds(Random.Range(camSwapDelayMin, camSwapDelayMax));
+        yield return StartCoroutine(PlayStaticScreen());
 
         gameCameras[selectedCameraIndex].SetupCamera(monitorCamera);
 
         isSwappingCamera = false;
+    }
+
+
+    private IEnumerator ChangeCameraToMap()
+    {
+        LightManager.Instance.UpdateActiveCamera(Vector3.zero, true);
+
+        PlayerMap.Instance.UpdateMap();
+
+        yield return StartCoroutine(PlayStaticScreen());
+
+        //mapAnim.SetTrigger("Play");
+        monitorCamera.transform.SetParent(mapCamHolder, false, false);
+
+        isSwappingCamera = false;
+    }
+
+
+    private IEnumerator PlayStaticScreen()
+    {
+        staticSound.Play();
+        staticSound.time = random.NextFloat(0, staticSoundClipLength);
+
+        monitorCamera.transform.SetParent(staticScreenCamHolder, false, false);
+
+        yield return new WaitForSeconds(random.NextFloat(camSwapDelayMin, camSwapDelayMax));
+
+        staticSound.Stop();
     }
 }
