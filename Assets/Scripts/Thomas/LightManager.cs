@@ -4,19 +4,34 @@ using UnityEngine;
 using Unity.Mathematics;
 using Unity.Burst;
 using System;
+using Unity.VisualScripting;
 
 
 [BurstCompile]
 public class LightManager : MonoBehaviour
 {
+    public static LightManager Instance;
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+
+
+
     public float flickerDistance;
+
     public float disableDistance;
+    public float camsDisableDistance;
+
+
+
 
     public float updateInterval;
 
     [Header("Monster Close Light Flicker")]
-    public int minFlickerTime;
-    public int maxFlickerTime;
+    public float minFlickerTime;
+    public float maxFlickerTime;
 
 
     [Header("\nSpecial Events")]
@@ -51,6 +66,9 @@ public class LightManager : MonoBehaviour
 
     private Transform enemy;
     private Transform player;
+
+    public bool cameraActive;
+    public Vector3 activeCameraPos;
 
 
     private Unity.Mathematics.Random random;
@@ -114,7 +132,7 @@ public class LightManager : MonoBehaviour
         {
             yield return updateDelay;
 
-            UpdateLights(Time.time);
+            UpdatePlayerMonsterBasedLights(Time.time);
 
 
 
@@ -137,6 +155,21 @@ public class LightManager : MonoBehaviour
                 //}
             }
         }
+    }
+
+
+    public void UpdateActiveCamera(Vector3 camPos, bool reset = false)
+    {
+        if (reset)
+        {
+            cameraActive = false;
+            UpdatePlayerMonsterBasedLights(0f);
+            return;
+        }
+
+        activeCameraPos = new Vector3(camPos.x, 0, camPos.z);
+        cameraActive = true;
+        UpdatePlayerMonsterBasedLights(0f);
     }
 
 
@@ -195,42 +228,46 @@ public class LightManager : MonoBehaviour
 
 
     [BurstCompile]
-    private void UpdateLights(float cTime)
+    private void UpdatePlayerMonsterBasedLights(float cTime)
     {
         Vector3 playerPos = new Vector3(player.position.x, 0, player.position.z);
         Vector3 enemyPos = new Vector3(enemy.position.x, 0, enemy.position.z);
 
+        float disableDistanceSqr = disableDistance * disableDistance;
+        float camsDisableDistanceSqr = camsDisableDistance * camsDisableDistance;
+        float flickerDistanceSqr = flickerDistance * flickerDistance;
+
+
         for (int i = 0; i < lights.Length; i++)
         {
-            if ((lightPos[i] - playerPos).sqrMagnitude > disableDistance * disableDistance)
+            bool lightOutOfPlayerRange = (lightPos[i] - playerPos).sqrMagnitude > disableDistanceSqr;
+            bool lightOutOfActiveCameraRange = cameraActive == false || (lightPos[i] - activeCameraPos).sqrMagnitude > camsDisableDistanceSqr;
+
+            //if player OR the active camera (if using the tablet) is out of range of target Light
+            if (lightOutOfPlayerRange && lightOutOfActiveCameraRange)
             {
-                if (lightsActive[i] == true)
-                {
-                    lights[i].gameObject.SetActive(false);
-                    lightsActive[i] = false;
-                }
+                lights[i].gameObject.SetActive(false);
+                lightsActive[i] = false;
             }
-
-            else if ((lightPos[i] - enemyPos).sqrMagnitude < flickerDistance * flickerDistance)
-            {
-                //if flickering is false
-                if (timeToFlicker[i] == 0)
-                {
-                    timeToFlicker[i] = cTime + random.NextInt(minFlickerTime, maxFlickerTime) * 0.1f;
-                }
-                else if (cTime >= timeToFlicker[i])
-                {
-
-                    lightsActive[i] = !lightsActive[i];
-                    lights[i].gameObject.SetActive(lightsActive[i]);
-
-                    timeToFlicker[i] = cTime + random.NextInt(minFlickerTime, maxFlickerTime) * 0.1f;
-                }
-            }
-
             else
             {
-                if (lightsActive[i] == false)
+                //if light is in range of enemy
+                if ((lightPos[i] - enemyPos).sqrMagnitude < flickerDistanceSqr)
+                {
+                    //if flickering is false
+                    if (timeToFlicker[i] == 0)
+                    {
+                        timeToFlicker[i] = cTime + random.NextFloat(minFlickerTime, maxFlickerTime);
+                    }
+                    else if (cTime >= timeToFlicker[i])
+                    {
+                        lightsActive[i] = !lightsActive[i];
+                        lights[i].gameObject.SetActive(lightsActive[i]);
+
+                        timeToFlicker[i] = cTime + random.NextFloat(minFlickerTime, maxFlickerTime);
+                    }
+                }
+                else if (lightsActive[i] == false)
                 {
                     lights[i].gameObject.SetActive(true);
                     lightsActive[i] = true;
@@ -248,9 +285,16 @@ public class LightManager : MonoBehaviour
     {
         Vector3 playerPos = new Vector3(player.position.x, 0, player.position.z);
 
+        float disableDistanceSqr = disableDistance * disableDistance;
+        float camsDisableDistanceSqr = camsDisableDistance * camsDisableDistance;
+
+
         for (int i = 0; i < lights.Length; i++)
         {
-            if ((lightPos[i] - playerPos).sqrMagnitude < disableDistance * disableDistance)
+            bool lightInPlayerRange = (lightPos[i] - playerPos).sqrMagnitude <= disableDistanceSqr;
+            bool lightInActiveCameraRange = cameraActive == true && (lightPos[i] - activeCameraPos).sqrMagnitude < camsDisableDistanceSqr;
+
+            if (lightInPlayerRange || lightInActiveCameraRange)
             {
                 if (isBloodlight[i] == true || bloodLightsEnding == true)
                 {

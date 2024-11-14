@@ -99,22 +99,27 @@ public class IngameUi : MonoBehaviour
 
     public void Esc(InputAction.CallbackContext context)
     {
-        if (context.started && _settings.activeInHierarchy)
+        if (context.started)
         {
-            _settings.SetActive(false);
-            _movement.enabled = true;
+            if (Monitor.monitorActive)
+            {
+                Monitor.Instance.DisableMonitor();
+            }
+            else if (_settings.activeInHierarchy)
+            {
+                _settings.SetActive(false);
+                _movement.enabled = true;
 
-            //SFX volume ON
-            _sfxMixer.SetFloat("Volume", Mathf.Log10(_sfxSlider.value) * 20);
-        }
-
-        else if (context.started && !_settings.activeInHierarchy)
-        {
-            _settings.SetActive(true);
-            _movement.enabled = false;
-
-            //SFX volume OFF
-            _sfxMixer.SetFloat("Volume", -100);
+                //SFX volume ON
+                _sfxMixer.SetFloat("Volume", Mathf.Log10(_sfxSlider.value) * 20);
+            }
+            else
+            {
+                _settings.SetActive(true);
+                _movement.enabled = false;
+                //SFX volume OFF
+                _sfxMixer.SetFloat("Volume", -100);
+            }
         }
     }
 

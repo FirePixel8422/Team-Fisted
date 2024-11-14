@@ -49,6 +49,7 @@ public class Movement : MonoBehaviour
     private void OnDisable()
     {
         Cursor.lockState = CursorLockMode.None;
+        rb.velocity = new Vector3(0, rb.velocity.y, 0);
     }
 
     private void Update()
@@ -78,7 +79,7 @@ public class Movement : MonoBehaviour
         Vector3 moveDirection = transform.forward * moveDir.y + transform.right * moveDir.x;
         moveDirection = new Vector3(moveDirection.x, 0, moveDirection.z);
 
-        rb.velocity = moveDirection * moveSpeed;
+        rb.velocity = new Vector3(moveDirection.x * moveSpeed, rb.velocity.y, moveDirection.z * moveSpeed);
 
         if(moveDir != Vector2.zero && sprinting)
         {

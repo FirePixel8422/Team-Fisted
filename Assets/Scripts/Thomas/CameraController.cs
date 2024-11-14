@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst;
 using UnityEngine;
 
+
+[BurstCompile]
 public class CameraController : MonoBehaviour
 {
     public float rotateSpeed;
@@ -47,8 +50,15 @@ public class CameraController : MonoBehaviour
     public float cameraLineLength;
     public Vector3 camerLineStartOffset;
 
+
+    [BurstCompile]
     private void OnDrawGizmos()
     {
+        if(rotatePoint == null)
+        {
+            return;
+        }
+
         Gizmos.color = Color.red;
 
         Vector3 cameraForward = rotatePoint.forward * camerLineStartOffset.z;
