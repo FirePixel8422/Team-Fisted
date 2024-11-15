@@ -1701,6 +1701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flickerDistance: 26
+  tabletFlickerDistance: 24
   disableDistance: 24
   camsDisableDistance: 22
   updateInterval: 0.03333334
@@ -32268,10 +32269,10 @@ MonoBehaviour:
   monitorCamera: {fileID: 1152575649}
   staticSound: {fileID: 1899816889}
   playerTabletFlashLigthAnim: {fileID: 1332685086}
-  grabTime: 1
+  grabTime: 0.8
   gameCameras: []
   staticScreenCamHolder: {fileID: 1274360219}
-  camSwapDelayMin: 0.2
+  camSwapDelayMin: 0.25
   camSwapDelayMax: 0.45
   monitorLogoCamHolder: {fileID: 862511249}
   monitorLogoAnim: {fileID: 1266013987}
@@ -32280,6 +32281,8 @@ MonoBehaviour:
   mapAnim: {fileID: 0}
   resetCameraIndexAtRestart: 0
   isSwappingCamera: 0
+  monsterClose: 0
+  cameraFucked: 0
   TEMPGAMEOBJECTMONITOR: {fileID: 0}
 --- !u!82 &1899816889
 AudioSource:
@@ -33463,7 +33466,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: a0fd3b5f37c012845ab8b8523a5501b0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 83f4bf77db059a743a79855589458e07, type: 2}
+      objectReference: {fileID: 2100000, guid: f2bbbb3b9497d7d4997cb0e2c52cc81e, type: 2}
     - target: {fileID: 919132149155446097, guid: a0fd3b5f37c012845ab8b8523a5501b0, type: 3}
       propertyPath: m_Name
       value: Flashlight_FixedOrigin

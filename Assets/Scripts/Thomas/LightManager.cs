@@ -19,6 +19,7 @@ public class LightManager : MonoBehaviour
 
 
     public float flickerDistance;
+    public float tabletFlickerDistance;
 
     public float disableDistance;
     public float camsDisableDistance;
@@ -235,6 +236,17 @@ public class LightManager : MonoBehaviour
         float disableDistanceSqr = disableDistance * disableDistance;
         float camsDisableDistanceSqr = camsDisableDistance * camsDisableDistance;
         float flickerDistanceSqr = flickerDistance * flickerDistance;
+        float tabletFlickerDistanceSqr = tabletFlickerDistance * tabletFlickerDistance;
+
+
+        if ((enemyPos - playerPos).sqrMagnitude < tabletFlickerDistanceSqr)
+        {
+            Monitor.Instance.monsterClose = true;
+        }
+        else
+        {
+            Monitor.Instance.monsterClose = false;
+        }
 
 
         for (int i = 0; i < lights.Length; i++)

@@ -47,6 +47,9 @@ public class Monitor : MonoBehaviour
     public bool isSwappingCamera;
     public static bool monitorActive;
 
+    public bool monsterClose;
+    public bool cameraFucked;
+
     public GameObject TEMPGAMEOBJECTMONITOR;
 
     private Coroutine openMonitorCO;
@@ -66,6 +69,29 @@ public class Monitor : MonoBehaviour
 
     private void Update()
     {
+        if (monsterClose)
+        {
+            cameraFucked = true;
+
+            if (monitorActive && monitorCamera.transform.parent != staticScreenCamHolder)
+            {
+                StopAllCoroutines();
+
+                monitorCamera.transform.SetParent(staticScreenCamHolder, false, false);
+
+                staticSound.Play();
+                staticSound.time = random.NextFloat(0, staticSoundClipLength);
+
+                isSwappingCamera = false;
+            }
+        }
+        else if(cameraFucked == true)
+        {
+            cameraFucked = false;
+            StartCoroutine(ChangeCamera(0));
+        }
+
+
         if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
         {
             if (monitorActive == false)
@@ -86,7 +112,7 @@ public class Monitor : MonoBehaviour
         }
 
 
-        if (monitorActive && isSwappingCamera == false)
+        if (monsterClose == false && monitorActive && isSwappingCamera == false)
         {
             if (UnityEngine.Input.GetMouseButtonDown(0))
             {
@@ -108,11 +134,11 @@ public class Monitor : MonoBehaviour
 
     private IEnumerator EnableMonitor()
     {
+        isSwappingCamera = true;
+
         playerTabletFlashLigthAnim.SetBool("EquipTablet", true);
 
         yield return new WaitForSeconds(grabTime);
-
-        isSwappingCamera = true;
 
         monitorCamera.enabled = true;
         monitorCamera.transform.SetParent(monitorLogoCamHolder, false, false);
@@ -144,6 +170,17 @@ public class Monitor : MonoBehaviour
 
     private IEnumerator ChangeCamera(int change)
     {
+        if (monsterClose)
+        {
+            monitorCamera.transform.SetParent(staticScreenCamHolder, false, false);
+
+            staticSound.Play();
+            staticSound.time = random.NextFloat(0, staticSoundClipLength);
+
+            yield break;
+        }
+
+
         selectedCameraIndex += change;
 
         if (selectedCameraIndex == gameCameras.Length)
