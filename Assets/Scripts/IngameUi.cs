@@ -104,6 +104,7 @@ public class IngameUi : MonoBehaviour
             if (Monitor.monitorActive)
             {
                 Monitor.Instance.DisableMonitor();
+                Monitor.monitorActive = false;
             }
             else if (_settings.activeInHierarchy)
             {

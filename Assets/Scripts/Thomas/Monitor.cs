@@ -20,6 +20,9 @@ public class Monitor : MonoBehaviour
     public AudioSource staticSound;
     private float staticSoundClipLength;
 
+    public Animator playerTabletFlashLigthAnim;
+    public float grabTime;
+
     public CameraController[] gameCameras;
 
 
@@ -63,7 +66,7 @@ public class Monitor : MonoBehaviour
 
     private void Update()
     {
-        if (UnityEngine.Input.GetKeyDown(KeyCode.Q) || UnityEngine.Input.GetKeyDown(KeyCode.Space))
+        if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
         {
             if (monitorActive == false)
             {
@@ -85,17 +88,17 @@ public class Monitor : MonoBehaviour
 
         if (monitorActive && isSwappingCamera == false)
         {
-            if (UnityEngine.Input.GetKeyDown(KeyCode.Q))
+            if (UnityEngine.Input.GetMouseButtonDown(0))
             {
                 isSwappingCamera = true;
                 StartCoroutine(ChangeCamera(-1));
             }
-            else if (UnityEngine.Input.GetKeyDown(KeyCode.E))
+            else if (UnityEngine.Input.GetMouseButtonDown(1))
             {
                 isSwappingCamera = true;
                 StartCoroutine(ChangeCamera(1));
             }
-            else if (UnityEngine.Input.GetKeyDown(KeyCode.W))
+            else if (UnityEngine.Input.GetKeyDown(KeyCode.Tab))
             {
                 isSwappingCamera = true;
                 StartCoroutine(ChangeCameraToMap());
@@ -105,10 +108,11 @@ public class Monitor : MonoBehaviour
 
     private IEnumerator EnableMonitor()
     {
-        isSwappingCamera = true;
-        TEMPGAMEOBJECTMONITOR.SetActive(true);
+        playerTabletFlashLigthAnim.SetBool("EquipTablet", true);
 
-        Movement.Instance.enabled = false;
+        yield return new WaitForSeconds(grabTime);
+
+        isSwappingCamera = true;
 
         monitorCamera.enabled = true;
         monitorCamera.transform.SetParent(monitorLogoCamHolder, false, false);
@@ -122,9 +126,7 @@ public class Monitor : MonoBehaviour
 
     public void DisableMonitor()
     {
-        TEMPGAMEOBJECTMONITOR.SetActive(false);
-
-        Movement.Instance.enabled = true;
+        playerTabletFlashLigthAnim.SetBool("EquipTablet", false);
 
         monitorCamera.transform.SetParent(staticScreenCamHolder, false, false);
         monitorCamera.enabled = false;
